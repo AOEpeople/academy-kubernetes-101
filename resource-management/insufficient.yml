@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: resource-management-insufficient
+  name: resource-management-insufficient
+  namespace: resource-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resource-management-insufficient
+  template:
+    metadata:
+      labels:
+        app: resource-management-insufficient
+    spec:
+      containers:
+        - command:
+            - "eatmemory"
+            - "50M"
+          image: julman99/eatmemory
+          name: resource-management-insufficient
+          resources:
+            requests:
+              memory: "5G"
+              cpu: "8"
+            limits:
+              memory: "6G"
+              cpu: "12"

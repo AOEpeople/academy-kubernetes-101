@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-management-incremental
+  namespace: resource-management
+spec:
+  hard:
+    limits.cpu: 200m
+    limits.memory: 200M
+    requests.cpu: 100m
+    requests.memory: 100M
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: resource-management-incremental
+  name: resource-management-incremental
+  namespace: resource-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resource-management-incremental
+  template:
+    metadata:
+      labels:
+        app: resource-management-incremental
+    spec:
+      containers:
+        - command:
+            - "eatmemory"
+            - "45M"
+          image: julman99/eatmemory
+          name: resource-management-incremental
+          resources:
+            requests:
+              memory: "50M"
+              cpu: "50m"
+            limits:
+              memory: "60M"
+              cpu: "60m"
