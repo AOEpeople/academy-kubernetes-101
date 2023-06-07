@@ -4,7 +4,7 @@ Baue dir deinen eigenen Container und experimentiere etwas.
 `Dockerfile`:
 ```dockerfile
 FROM nginx:alpine
-RUN curl https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/container/index.html > /usr/share/nginx/html/index.html \
+RUN curl https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/container/index.html > /usr/share/nginx/html/index.html
 ```
 
 bauen des containers
