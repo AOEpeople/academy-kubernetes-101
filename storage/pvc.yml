@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  storageClassName: ""
+  volumeName: my-pv # <-- Referenz auf das Persisitent Volume, welches in pv.yaml erstellt wurde
+  accessModes:
+    - "ReadWriteMany"
+  resources:
+    requests:
+      storage: 5Mi

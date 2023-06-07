@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  volumes:
+    - name: my-pvc
+  containers:
+    - image: nginx
+      name: nginx
+      volumeMounts:
+        - name: my-pvc
+          mountPath: /my-pvc
+    - image: busybox:1.36
+      name: busybox
+      command: ["/bin/sh", "-ec", "sleep 3600"] # <-- lässt den Container eine Stunde lang laufen
+      volumeMounts:
+        - name: my-pvc # <-- Referenz auf den Persistent Volume Claim welches in pvc.yml erstellt wurde
+          mountPath: /my-pvc

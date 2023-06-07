@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+  - pod.yaml
+
+namespace: lab-troubleshooting
+
+commonLabels:
+  overlay: lab-3

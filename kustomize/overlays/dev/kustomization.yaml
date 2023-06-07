@@ -1,0 +1,16 @@
+resources:
+  - ../../base
+
+namespace: lab-kustomize-dev
+
+commonLabels:
+  env: dev
+
+configMapGenerator:
+  - name: my-config
+    literals:
+      - msg=Hello world!
+      - env=dev
+
+patches:
+  - path: replicas.yaml

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envdump
+spec:
+  template:
+    spec:
+      containers:
+        - name: envdump
+          image: kevingimbel/envdump
+          ports:
+            - containerPort: 3000
+          env:
+            - name: CUSTOM_MSG
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: msg
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: my-config
+                  key: env

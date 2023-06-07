@@ -1,0 +1,6 @@
+commonLabels:
+  app: "envdump"
+  language: "nodejs"
+  http: "true"
+
+namespace: lab-troubleshooting

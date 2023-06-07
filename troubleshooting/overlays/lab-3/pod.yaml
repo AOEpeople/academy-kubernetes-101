@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine-pod
+spec:
+  containers:
+    - name: alpinepod
+      image: alpine
+      command: ["sh", "-c", "exit 1", "test", "-d", "/etc/"]
+  restartPolicy: OnFailure

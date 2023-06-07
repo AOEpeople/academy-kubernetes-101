@@ -1,0 +1,8 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+
+commonLabels:
+  app: "envdump"
+  language: "nodejs"
+  http: "true"
