@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-strategies-rolling
+  name: deployment-strategies-rolling
+  namespace: deployment-strategies
+spec:
+  replicas: 6
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: deployment-strategies-rolling
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: deployment-strategies-rolling
+    spec:
+      containers:
+        - image: gcr.io/kuar-demo/kuard-amd64:blue
+          name: deployment-strategies-rolling

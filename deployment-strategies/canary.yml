@@ -1,0 +1,92 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: deployment-strategies-canary
+  namespace: deployment-strategies
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "deployment-strategies-canary.local"
+      http:
+        paths:
+          - backend:
+              service:
+                name: deployment-strategies-canary-blue
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: deployment-strategies-canary-blue
+  name: deployment-strategies-canary-blue
+  namespace: deployment-strategies
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: deployment-strategies-canary-blue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-strategies-canary-blue
+  name: deployment-strategies-canary-blue
+  namespace: deployment-strategies
+spec:
+  replicas: 6
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: deployment-strategies-canary-blue
+  template:
+    metadata:
+      labels:
+        app: deployment-strategies-canary-blue
+    spec:
+      containers:
+        - image: gcr.io/kuar-demo/kuard-amd64:blue
+          name: deployment-strategies-canary
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: deployment-strategies-canary-green
+  name: deployment-strategies-canary-green
+  namespace: deployment-strategies
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: deployment-strategies-canary-green
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: deployment-strategies-canary-green
+  name: deployment-strategies-canary-green
+  namespace: deployment-strategies
+spec:
+  replicas: 6
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: deployment-strategies-canary-green
+  template:
+    metadata:
+      labels:
+        app: deployment-strategies-canary-green
+    spec:
+      containers:
+        - image: gcr.io/kuar-demo/kuard-amd64:green
+          name: deployment-strategies-canary
