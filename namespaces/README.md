@@ -1,9 +1,5 @@
 # Lab: Namespaces
 
-```shell
-cd ~/kubernetes-101/container
-```
-
 <!-- BEGIN mktoc -->
 
 - [Anschauen von Namespaces](#anschauen-von-namespaces)
