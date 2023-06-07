@@ -48,5 +48,5 @@ kubectl delete namespace anton
 Namespace können natürlich wie jede Ressource via YAML verwaltet werden.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/namespace/berta.yml
+kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/namespaces/berta.yml
 ```
