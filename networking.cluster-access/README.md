@@ -59,7 +59,7 @@ Ansprechen über NodePort vom Controller:
 ```shell
 curl http://nodea:30426/
 curl http://nodeb:30426/
-curl http://controllplane:30426/
+curl http://controlplane:30426/
 ```
 Was sagt der Controller dazu:
 ```shell
