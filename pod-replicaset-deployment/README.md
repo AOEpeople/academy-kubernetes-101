@@ -13,16 +13,19 @@
 
 ## Pods
 
-Zuerst starten wir drei Pods mit Namen `nginx-pod`, `nginx-pod-2` und `nginx-pod-3`.
+Zuerst erstellen wir einen Namespace und starten drei Pods mit Namen `nginx-pod`, `nginx-pod-2` und `nginx-pod-3`.
+```sh
+kubectl create namespace lab-pods
+```
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-2.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-3.yml
+kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-2.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-3.yml
 ```
 
 Mit `kubectl get pods` sehen wir anschließend die drei Pods.
 
 ```sh
-kubectl get pods
+kubectl -n lab-pods get pods
 NAME             READY   STATUS    RESTARTS   AGE
 nginx-pod        1/1     Running   0          10s
 nginx-pod-2      1/1     Running   0          10s
@@ -34,13 +37,13 @@ nginx-pod-3      1/1     Running   0          10s
 Als nächstes starten wir ein ReplicaSet um zwei weitere nginx Instanzen zu launchen.
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-replicaset.yml
+kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-replicaset.yml
 ```
 
 Wir sollen also mit `kubectl get pods` nun fünf Pods sehen:
 
 ```sh
-kubectl get pods
+kubectl -n lab-pods get pods
 NAME          READY   STATUS    RESTARTS   AGE
 nginx-pod-2   1/1     Running   0          101s
 nginx-pod-3   1/1     Running   0          101s
@@ -52,14 +55,14 @@ Das ReplicaSet übernimmt alle Pods mit label `app=nginx`, auch die **Pods die s
 
 Nun gut, starten wir unseren ersten nginx Pod erneut:
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml
+kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml
 pod/nginx-pod created
 ```
 
 Und siehe da: wir haben wieder... zwei Pods.
 
 ```sh
-kubectl get pods
+kubectl -n lab-pods get pods
 NAME          READY   STATUS    RESTARTS   AGE
 nginx-pod-2   1/1     Running   0          4m2s
 nginx-pod-3   1/1     Running   0          4m2s
@@ -70,7 +73,7 @@ Das ReplicaSet erkennt, dass ein neuer Pod mit label `app=nginx` gestartet wird 
 Mit `kubectl describe rs nginx-rs` sehen wir ebenfalls, dass das ReplicaSet unseren Pod wieder gelöscht hat.
 
 ```sh
-kubectl describe rs nginx-rs
+kubectl -n lab-pods describe rs nginx-rs
 Name:         nginx-rs
 Namespace:    default
 Selector:     app=nginx
@@ -99,8 +102,8 @@ Events:
 Bevor wir starten löschen wir alle Resourcen:
 
 ```sh
-$ kubectl delete replicaset nginx-rs
-$ kubectl delete pod -l app=nginx
+$ kubectl -n lab-pods delete replicaset nginx-rs
+$ kubectl -n lab-pods delete pod -l app=nginx
 ```
 
 ### Deployment erstellen
@@ -108,13 +111,13 @@ $ kubectl delete pod -l app=nginx
 Nun erstellen wir das deployment:
 
 ```sh
-$ kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-deployment.yml
+$ kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-deployment.yml
 deployment.apps/nginx-deployment created
 ```
 
 Und anschließend werfen wir einen Blick auf die Pods:
 ```sh
-$ kubectl get pods
+$ kubectl -n lab-pods get pods
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-85996f8dbd-lxs5p   1/1     Running   0          5s
 nginx-deployment-85996f8dbd-pwg9z   1/1     Running   0          5s
@@ -126,13 +129,13 @@ nginx-deployment-85996f8dbd-r77ql   1/1     Running   0          5s
 Mit `kubectl get rs` sehen wir das Replicaset welches von unserem Deployment angelegt wurde und mir `kubectl describe rs` können wir die genaue Konfiguration anzeigen lassen.
 
 ```sh
-$ kubectl get rs
+$ kubectl -n lab-pods get rs
 NAME                          DESIRED   CURRENT   READY   AGE
 nginx-deployment-85996f8dbd   3         3         3       29s
 ```
 
 ```sh
-kubectl describe rs nginx-deployment-85996f8dbd
+kubectl -n lab-pods describe rs nginx-deployment-85996f8dbd
 Name:           nginx-deployment-85996f8dbd
 Namespace:      default
 Selector:       app=nginx,pod-template-hash=85996f8dbd
@@ -169,7 +172,7 @@ Hier sehen wir eine Menge!
 Wenn wir nun wieder unsere drei Pods vom Anfang starten...
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-2.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-3.yml
+kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-2.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-3.yml
 pod/nginx-pod created
 pod/nginx-pod-2 created
 pod/nginx-pod-3 created
@@ -178,7 +181,7 @@ pod/nginx-pod-3 created
 ... sehen wir, dass diese ohne Probleme laufen! Das ReplicaSet übernimmt sie nicht, da diese Pods nicht das Label `pod-template-hash=85996f8dbd` haben.
 
 ```sh
-kubectl get pods
+kubectl -n lab-pods get pods
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-85996f8dbd-lxs5p   1/1     Running   0          15m
 nginx-deployment-85996f8dbd-pwg9z   1/1     Running   0          15m
