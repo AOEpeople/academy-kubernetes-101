@@ -1,7 +1,4 @@
 # Service Accounts
-```sh
-cd ~/kubernetes-101/storage
-```
 <!-- BEGIN mktoc -->
 
 - [Vorbereitungen](#vorbereitungen)
@@ -19,7 +16,7 @@ cd ~/kubernetes-101/storage
 Namespace erstellen
 
 ```sh
-$ kubectl create namespace lab-storage
+kubectl create namespace lab-storage
 ```
 
 ## Storage
@@ -27,13 +24,13 @@ $ kubectl create namespace lab-storage
 ### Persistent Volume anlegen
 
 ```sh
-$ kubectl -n lab-storage apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/storage/pv.yml
+kubectl -n lab-storage apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/storage/pv.yml
 ```
 
 ### Persistent Volume Claim anlegen
 
 ```sh
-$ kubectl -n lab-storage apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/storage/pvc.yml
+kubectl -n lab-storage apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/storage/pvc.yml
 ```
 
 ### Pods starten
@@ -48,7 +45,7 @@ Verbinde dich in den Pod  busybox, dann erstelle eine Datei unter `/my-pvc/`.
 
 ```sh
 kubectl -n lab-storage exec -it nginx --container busybox -- /bin/sh
-# kubectl -n <namespace> exec -it <pod> --container <container-name> -- /bin/sh
+kubectl -n <namespace> exec -it <pod> --container <container-name> -- /bin/sh
 ```
 
 Anschließend verbinde dich auf den nginx container. Hier sollte im selben Verzeichnis `/my-pvc/` die eben im Busybox erstellte Datei liegen.
