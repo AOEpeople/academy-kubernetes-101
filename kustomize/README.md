@@ -1,7 +1,4 @@
 # Kustomize
-```sh
-cd ~/kubernetes-101/kustomize
-```
 <!-- BEGIN mktoc -->
 
 - [Vorbereitung](#vorbereitung)
