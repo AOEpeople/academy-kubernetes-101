@@ -1,7 +1,4 @@
 # Autoscaling
-```sh
-cd ~/kubernetes-101/autoscaling
-```
 <!-- BEGIN mktoc -->
 
 - [Vorbereitung](#vorbereitung)
@@ -21,7 +18,7 @@ $ kubectl create namespace lab-autoscaling
 Metrics Server installieren (ohne Namespace!)
 
 ```sh 
-$ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
 ## Autoscaling
@@ -31,19 +28,19 @@ $ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/la
 1. Web-app deployen
 
 ```sh
-$ kubectl -n lab-autoscaling apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/autoscaling/web-app.yml
+kubectl -n lab-autoscaling apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/autoscaling/web-app.yml
 ```
 
 2. HPA anlegen
 
 ```sh
-$ kubectl -n lab-autoscaling autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+kubectl -n lab-autoscaling autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 ```
 
 3. HPA anzeigen lassen
 
 ```sh
-$ kubectl -n lab-autoscaling get hpa
+kubectl -n lab-autoscaling get hpa
 ```
 
 4. Load auf web app generieren
@@ -51,13 +48,13 @@ $ kubectl -n lab-autoscaling get hpa
 In einem neuen Terminal (und neuer SSH Session!) führen wir folgenden Befehl aus um Load auf der WebApp zu generieren.
 
 ```sh
-$ kubectl run -n lab-autoscaling -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+kubectl run -n lab-autoscaling -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 ```
 
 Dann schauen wir uns den HPA an:
 
 ```sh
-$ kubectl -n lab-autoscaling get hpa php-apache --watch
+kubectl -n lab-autoscaling get hpa php-apache --watch
 ```
 
 Mit der Load auf den Webserver zeigt der HPA hohe Auslastung an (~300% sind nicht untypisch), sodass die Pods hochskaliert werden. Nach und nach sollten weitere Pods gestartet werden bis sich die Auslasstung normalisiert.
