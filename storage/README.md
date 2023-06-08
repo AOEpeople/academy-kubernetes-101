@@ -1,4 +1,4 @@
-# Service Accounts
+# Storage
 <!-- BEGIN mktoc -->
 
 - [Vorbereitungen](#vorbereitungen)
