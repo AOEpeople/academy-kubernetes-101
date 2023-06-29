@@ -47,7 +47,7 @@ kubectl -n kube-system describe pod etcd-controlplane
 
 ## Starten eines Containers
 
-Starten eines containers via kubectl.
+Starten eines Containers via `kubectl`
 
 ```shell
 kubectl run curl --image=curlimages/curl --command "curl" --command "google.de"
@@ -58,7 +58,7 @@ Beobachten des Containers
 watch kubectl get pod curl
 ```
 
-Ausgabe des Containers
+Anzeigen der Ausgabe des Containers
 ```shell
 kubectl logs curl
 ```
@@ -70,7 +70,7 @@ kubectl delete pod curl
 
 ## Imperatives Erstellen von Objekten
 
-Imperatives Erstellen von Objekten via kubectl.
+Imperatives Erstellen von Objekten via kubectl
 
 ```shell
 kubectl create deployment nginx --image nginx
@@ -90,7 +90,7 @@ kubectl delete deployment nginx
 
 ## Deklaratives Erstellen von Objekten
 
-Hinzufügen und Löschen von Objekten mittels deklarativer YAML Manifeste.
+Hinzufügen und Löschen von Objekten mittels deklarativer YAML Manifeste
 
 ```shell
 cat pod.yml
@@ -113,7 +113,7 @@ kubectl get pods
 ```
 
 ## Cleanup
-Löscht alle Objekte in einem Namespace.
+Löscht alle Objekte in einem Namespace
 ```shell
 kubectl delete all --all
 ```

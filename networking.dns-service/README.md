@@ -23,17 +23,17 @@ kubectl -n networking exec curl -- curl $(kubectl -n networking get pod nginx -o
 ```
 
 # Pod DNS
-Pod via DNS Namen ansprechen:
+Pod via Cluster-interne Domain ansprechen:
 ```shell
 kubectl -n networking exec curl -- curl 192-168-248-130.networking.pod.cluster.local
 ```
 
-# Service / Expose a Pod
-Einen Pod via Service Exposen:
+# Service / Pod exposen
+Einen Pod via Service exposen:
 ```shell
 kubectl -n networking expose pod nginx --port 80 --name nginx
 ```
-Pod via Service DNS Namen ansprechen:
+Pod via Service Domain ansprechen:
 ```shell
 kubectl -n networking exec curl -- curl nginx.networking.svc.cluster.local
 ```

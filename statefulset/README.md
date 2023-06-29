@@ -31,8 +31,8 @@ kubectl -n lab-sfs apply -f https://raw.githubusercontent.com/AOEpeople/academy-
 
 Dies erstellt folgende Ressourcen:
 - Headless Service mit nginx
-- StatefulSet mit nginx replica
-- Persistent Volume Claim
+- StatefulSet mit nginx Replica
+- PersistentVolumeClaim
 
 ### Ressourcen anschauen
 
@@ -91,22 +91,22 @@ web-4   1/1     Running   0          27s
 
 ## Lab Aufgaben
 
-**Skaliere die Pods von fünf auf zwei**
+**Skaliere die Replicas von fünf auf zwei**
 
-**Update das Pod image von bitnami/nginx:1.23 auf bitnami/nginx:1.25**
+**Update das Pod Image von `bitnami/nginx:1.23` zu `bitnami/nginx:1.25`**
 
-Um die Änderung zu validieren kann folgender Befehl benutzt werden
+Folgender Befehl kann genutzt werden um die Änderung zu validieren
 
 ```sh
 kubectl -n lab-sfs get pods -o jsonpath='{.items[*].spec.containers[0].image}'
 ```
-Der Output sollte folgendes zeigen (hier mit 3 replicas):
+Der Output sollte folgendes zeigen (hier mit 3 Replicas):
 
 ```sh
 bitnami/nginx:1.25 bitnami/nginx:1.25 bitnami/nginx:1.25
 ```
 
-Periodisch kann der Output mit `watch` überprüft werden.
+Mit `watch` kann der Output periodisch überprüft werden.
 `watch` kann auf MacOS mit `brew` installiert werden: `brew install watch`, alternativ kann `while` benutzt werden um `watch` zu simulieren.
 
 ```sh
@@ -119,12 +119,12 @@ while true; do clear; date +"%H:%m:%S"; echo ""; kubectl -n lab-sfs get pods -o 
 
 <details>
 <summary>Tipp 1</summary>
-Um das Image zu ändern muss Stateful Set (<code>nginx-stateful.yml</code>) angepasst werden.
+Um das Image zu ändern, muss das StatefulSet (<code>nginx-stateful.yml</code>) angepasst werden.
 </details>
 
 <details>
 <summary>Tipp 2</summary>
-Es dauert eine Weile bis alle Pods aktualisiert wurden. Alternativ kann das StatefulSet auf 0 und anschließend auf 3 skaliert werden damit die Änderungen sofort greifen
+Es dauert eine Weile bis alle Pods aktualisiert wurden. Alternativ kann das StatefulSet auf 0 und anschließend auf 3 Replicas skaliert werden, damit die Änderungen sofort greifen.
 </details>
 
 ## Weitere Links

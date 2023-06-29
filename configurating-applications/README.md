@@ -8,7 +8,7 @@ kubectl -n appconfig create deployment app --image alpine:latest -- sleep infini
 
 ## Environment Variablen
 
-Füge eine Environment Variable via kubectl edit hinzu:
+Füge eine Environment Variable via `kubectl edit` hinzu:
 ```shell
 kubectl -n appconfig edit deployment app
 ```

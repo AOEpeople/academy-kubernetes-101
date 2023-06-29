@@ -15,7 +15,7 @@ Namespace erstellen
 $ kubectl create namespace lab-autoscaling
 ```
 
-Metrics Server installieren (ohne Namespace!)
+Metrics Server in den `default` Namespace installieren
 
 ```sh 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -25,7 +25,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 
 ### HPA (Horizontal Pod Autoscaler)
 
-1. Web-app deployen
+1. Web App deployen
 
 ```sh
 kubectl -n lab-autoscaling apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/autoscaling/web-app.yml
@@ -43,21 +43,21 @@ kubectl -n lab-autoscaling autoscale deployment php-apache --cpu-percent=50 --mi
 kubectl -n lab-autoscaling get hpa
 ```
 
-4. Load auf web app generieren
+4. Load auf Web App generieren
 
-In einem neuen Terminal (und neuer SSH Session!) führen wir folgenden Befehl aus um Load auf der WebApp zu generieren.
+In einem neuen Terminal (und neuer SSH Session!) führen wir folgenden Befehl aus um Load auf der Web App zu generieren.
 
 ```sh
 kubectl run -n lab-autoscaling -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 ```
 
-Dann schauen wir uns den HPA an:
+Dann schauen wir uns den HPA an
 
 ```sh
 kubectl -n lab-autoscaling get hpa php-apache --watch
 ```
 
-Mit der Load auf den Webserver zeigt der HPA hohe Auslastung an (~300% sind nicht untypisch), sodass die Pods hochskaliert werden. Nach und nach sollten weitere Pods gestartet werden bis sich die Auslasstung normalisiert.
+Mit Load auf dem Webserver zeigt der HPA hohe Auslastung an (~300% sind nicht untypisch), sodass die Pods hochskaliert werden. Nach und nach sollten weitere Pods gestartet werden bis sich die Auslastung normalisiert.
 
 ### Load stoppen
 
