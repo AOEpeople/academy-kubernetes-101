@@ -1,6 +1,7 @@
 # Lab: Networking - Zugriff von außen ins Cluster
 
 Bereite einige Objekte für dieses Lab vor:
+
 ```shell
 kubectl create namespace networking
 kubectl -n networking run nginx --image nginx
@@ -9,22 +10,26 @@ kubectl -n networking run curl --image curlimages/curl --command "sleep" --comma
 
 ## port-forward
 
-Starte das forwarding:
+Starte das Port Forwarding:
+
 ```shell
 kubectl -n networking port-forward pod/nginx 8080:80
 ```
 
-Starte das forwarding im Hintergrund:
+Starte das Port Forwarding im Hintergrund:
+
 ```shell
 kubectl -n networking port-forward pod/nginx 8080:80 &
 ```
 
-Ansprechen des Pods von lokal:
+Ansprechen des Pods von lokal über den weitergeleiteten Port:
+
 ```shell
 curl localhost:8080
 ```
 
-Forwarding wieder beenden:
+Port Forwarding wieder beenden:
+
 ```shell
 ps aux | grep port-forward
 kill PROCESS_ID
@@ -32,55 +37,75 @@ kill PROCESS_ID
 
 ## Ingress Controller
 
-Zuerst brauchen wir einen Ingress Controller:
+Zuerst brauchen wir einen Ingress Controller (z.B. `ingress-nginx`):
+
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
 ```
+
 Läuft der Controller?
+
 ```shell
 kubectl -n ingress-nginx get pods
 kubectl -n ingress-nginx logs deployment/ingress-nginx-controller
 ```
 
 ## Der erste Ingress
-Unseren Pod Exposen:
+
+Unseren Pod über einen neuen Service exposen:
+
 ```shell
 kubectl -n networking expose pod nginx --port 80 --name nginx
 ```
+
 Eine Ingress Objekt anlegen, das auf den Service verweist:
+
 ```shell
 kubectl -n networking create ingress nginx --class=nginx --rule="/=nginx:80"
 ```
+
 Wie sieht das Objekt dazu aus?
+
 ```shell
 kubectl -n networking get ingress nginx -o yaml
 ```
-Ansprechen über NodePort vom Controller:
+
+Ansprechen über NodePort des Ingress Controller Services:
+
 ```shell
 curl http://nodea:30426/
 curl http://nodeb:30426/
 curl http://controlplane:30426/
 ```
+
 Was sagt der Controller dazu:
+
 ```shell
 kubectl -n ingress-nginx logs deployment/ingress-nginx-controller
 ```
 
 ## Pfade
-Editiere das Ingress Objekt und ändere den Pfad auf `/hello-nginx`
+
+Editiere das Ingress Objekt und ändere den Pfad zu `/hello-nginx`
+
 ```shell
 kubectl -n networking get ingress nginx -o yaml
 ```
+
 Ansprechen:
+
 ```shell
 curl http://nodea:30426/hello-nginx
 ```
+
 404? Wieso?
+
 ```shell
 kubectl -n networking annotate ingress nginx nginx.ingress.kubernetes.io/rewrite-target='/'
 ```
 
 ## Cleanup:
+
 ```shell
 kubectl delete namespace networking
 kubectl delete namespace ingress-nginx

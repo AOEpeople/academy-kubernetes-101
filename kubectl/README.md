@@ -13,6 +13,7 @@ kubectl api-resources
 ```
 
 Erklärung einer Ressource
+
 ```shell
 kubectl explain pod
 kubectl explain pod --recursive --api-version v1
@@ -33,6 +34,7 @@ kubectl get pod etcd-controlplane -n kube-system
 ```
 
 Ausgabeformat definieren
+
 ```shell
 kubectl get namespaces default -o wide
 kubectl get namespaces default -o yaml
@@ -40,37 +42,42 @@ kubectl get namespaces default -o jsonpath='{.metadata.name}'
 ```
 
 ## Beschreiben von Objekten
+
 Detaillierte Informationen
+
 ```shell
 kubectl -n kube-system describe pod etcd-controlplane
 ```
 
 ## Starten eines Containers
 
-Starten eines containers via kubectl.
+Starten eines Containers via `kubectl`
 
 ```shell
 kubectl run curl --image=curlimages/curl --command "curl" --command "google.de"
 ```
 
 Beobachten des Containers
+
 ```shell
 watch kubectl get pod curl
 ```
 
-Ausgabe des Containers
+Anzeigen der Ausgabe des Containers
+
 ```shell
 kubectl logs curl
 ```
 
 Löschen des Containers
+
 ```shell
 kubectl delete pod curl
 ```
 
 ## Imperatives Erstellen von Objekten
 
-Imperatives Erstellen von Objekten via kubectl.
+Imperatives Erstellen von Objekten via kubectl
 
 ```shell
 kubectl create deployment nginx --image nginx
@@ -90,7 +97,7 @@ kubectl delete deployment nginx
 
 ## Deklaratives Erstellen von Objekten
 
-Hinzufügen und Löschen von Objekten mittels deklarativer YAML Manifeste.
+Hinzufügen und Löschen von Objekten mittels deklarativer YAML Manifeste
 
 ```shell
 cat pod.yml
@@ -113,7 +120,9 @@ kubectl get pods
 ```
 
 ## Cleanup
-Löscht alle Objekte in einem Namespace.
+
+Löscht alle Objekte in einem Namespace
+
 ```shell
 kubectl delete all --all
 ```

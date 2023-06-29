@@ -16,9 +16,9 @@ kubectl create namespace lab-kustomize-dev
 kubectl create namespace lab-kustomize-prod
 ```
 
-## Using kustomize
+## Nutzung von kustomize
 
-Deploy the dev environment
+Deploye die Dev-Umgebung
 
 ```sh
 $ kubectl apply -k https://github.com/AOEpeople/academy-kubernetes-101//kustomize/overlays/dev?ref=main
@@ -27,14 +27,14 @@ service/envdump created
 deployment.apps/envdump created
 ```
 
-Da wir in unserem Overlay den Namespace setzen müssen wir hier _keinen Namespace (`-n`)_ angeben.
+Da wir in unserem Overlay den Namespace setzen, müssen wir hier _keinen Namespace (`-n`)_ angeben.
 
 ## Lab
 
-Schaue dir die Dateien in `overlays/dev` an. Nun erstelle in `overlays/prod` Anpassungen wie folgt:
+Schaue dir die Dateien in `overlays/dev` an. Nun erstelle in `overlays/prod` folgende Anpassungen:
 
-- Der Service soll mit 2 replicas laufen
-- Alle Ressourcen in prod sollen außerdem die Annotation `kustomized.io/overlays: prod` bekommen
+- Der Service soll mit 2 Replicas laufen
+- Alle Ressourcen in `prod` sollen außerdem die Annotation `kustomized.io/overlays: prod` erhalten
 
 ## Weiterführende Links
 

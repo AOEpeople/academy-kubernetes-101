@@ -1,7 +1,9 @@
 # Service Accounts
+
 ```sh
 cd ~/kubernetes-101/service-accounts
 ```
+
 <!-- BEGIN mktoc -->
 
 - [Vorbereitungen](#vorbereitungen)
@@ -34,20 +36,21 @@ kubectl -n lab-sc describe sa your-name
 # kubectl -n lab-sc describe sa kevin
 ```
 
-Überprüfe die berechtigungen für den neuen User
+Überprüfe die Berechtigungen für den neuen User
+
 ```sh
 kubectl auth can-i list secrets --namespace lab-sc --as your-name
 # kubectl auth can-i list secrets --namespace lab-sc --as kevin
 no
 ```
 
-Erstelle eine ClusterRole, die Lese Zugriff auf Secrets gibt.
+Erstelle eine ClusterRole, die Lese-Zugriff auf Secrets erlaubt.
 
 ```sh
 kubectl -n lab-sc apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/service-accounts/clusterrole.yml
 ```
 
-Jetzt, erstelle ein `ClusterRole Binding` mit dem folgenden YAML Dokument.
+Erstelle ein `ClusterRole Binding` mit dem folgenden YAML Dokument.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -65,7 +68,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Anschließend prüfe ob du Secrets einsehen kannst.
+Prüfe anschließend, ob du Secrets einsehen kannst.
 
 ```sh
 kubectl auth can-i list secrets --namespace lab-sc --as your-user
@@ -73,7 +76,7 @@ kubectl auth can-i list secrets --namespace lab-sc --as your-user
 yes
 ```
 
-Prüfe ob du Secrets erstellen kannst:
+Prüfe, ob du Secrets erstellen kannst:
 
 ```sh
 kubectl auth can-i create secrets --namespace lab-sc --as your-user
@@ -83,8 +86,8 @@ no
 
 ## Lab Aufgaben
 
-1. Erstelle eine neue ClusterRole namens `create-secret` die das erstellen von Secrets erlaubt
-2. Füge die Rolle deinem User hinzu.
+1. Erstelle eine neue ClusterRole namens `create-secret`, die das Erstellen von Secrets erlaubt
+2. Weise deinem Nutzer die neu erstellte Rolle zu
 3. Verifiziere, dass du nun Secrets im Namespace `lab-sc` anlegen kannst
 
 ```sh
