@@ -1,9 +1,5 @@
 # kubectl
 
-```shell
-cd ~/kubernetes-101/kubectl
-```
-
 Der Umgang mit kubectl, die Basics.
 
 ## Welche Ressourcen gibt es?

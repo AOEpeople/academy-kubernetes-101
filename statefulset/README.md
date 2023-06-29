@@ -1,9 +1,5 @@
 # StatefulSets & DaemonSet
 
-```sh
-cd ~/kubernetes-101/statefulset
-```
-
 <!-- BEGIN mktoc -->
 
 - [StatefulSets](#statefulsets)

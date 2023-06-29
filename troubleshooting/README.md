@@ -1,9 +1,5 @@
 # Troubleshooting
 
-```
-cd ~/kubernetes-101/troubleshooting
-```
-
 <!-- BEGIN mktoc -->
 
 - [Vorbereitung](#vorbereitung)

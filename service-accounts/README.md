@@ -1,9 +1,5 @@
 # Service Accounts
 
-```sh
-cd ~/kubernetes-101/service-accounts
-```
-
 <!-- BEGIN mktoc -->
 
 - [Vorbereitungen](#vorbereitungen)
