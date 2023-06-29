@@ -1,6 +1,7 @@
 # Lab: Deployment Strategien
 
 Bereite einige Objekte für dieses Lab vor:
+
 ```shell
 kubectl create namespace deployment-strategies
 
@@ -14,11 +15,14 @@ kubectl -n ingress-nginx get service ingress-nginx-controller # node port heraus
 ```shell
 kubectl -n deployment-strategies apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/rolling.yml
 ```
+
 ```shell
 kubectl -n deployment-strategies get pods --watch
 # am besten in zweitem Terminal 
 ```
+
 neue version
+
 ```shell
 kubectl -n deployment-strategies set image deployment/deployment-strategies-rolling deployment-strategies-rolling=gcr.io/kuar-demo/kuard-amd64:green
 ```
@@ -28,6 +32,7 @@ kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOE
 ```
 
 ## Canary
+
 ```shell
 kubectl -n deployment-strategies apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/canary.yml
 ```
@@ -49,6 +54,7 @@ kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOE
 ```
 
 ## Blue-Green
+
 ```shell
 kubectl -n deployment-strategies apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/blue-green.yml
 ```
@@ -70,6 +76,7 @@ kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOE
 ```
 
 ## Cleanup:
+
 ```shell
 kubectl delete namespace deployment-strategies
 ```

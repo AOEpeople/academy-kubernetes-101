@@ -1,7 +1,9 @@
 # StatefulSets & DaemonSet
+
 ```sh
 cd ~/kubernetes-101/statefulset
 ```
+
 <!-- BEGIN mktoc -->
 
 - [StatefulSets](#statefulsets)
@@ -30,6 +32,7 @@ kubectl -n lab-sfs apply -f https://raw.githubusercontent.com/AOEpeople/academy-
 ```
 
 Dies erstellt folgende Ressourcen:
+
 - Headless Service mit nginx
 - StatefulSet mit nginx Replica
 - PersistentVolumeClaim
@@ -37,6 +40,7 @@ Dies erstellt folgende Ressourcen:
 ### Ressourcen anschauen
 
 **Pods**
+
 ```sh
 kubectl -n lab-sfs get pods
 NAME    READY   STATUS    RESTARTS   AGE
@@ -46,6 +50,7 @@ web-2   1/1     Running   0          60s
 ```
 
 **Service**
+
 ```sh
 kubectl -n lab-sfs describe svc nginx
 ```
@@ -61,7 +66,6 @@ web    3/3     69s
 ```sh
 kubectl -n lab-sfs describe statefulset web
 ```
-
 
 ```sh
 kubectl -n lab-sfs 
@@ -100,6 +104,7 @@ Folgender Befehl kann genutzt werden um die Änderung zu validieren
 ```sh
 kubectl -n lab-sfs get pods -o jsonpath='{.items[*].spec.containers[0].image}'
 ```
+
 Der Output sollte folgendes zeigen (hier mit 3 Replicas):
 
 ```sh

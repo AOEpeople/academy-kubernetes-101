@@ -1,4 +1,5 @@
 # Troubleshooting
+
 ```
 cd ~/kubernetes-101/troubleshooting
 ```
@@ -38,11 +39,13 @@ Die Labs sollen **nacheinander** deployed werden. Bevor das nächste Lab deploye
 Finde heraus, warum die Pods in den Labs nicht starten und passe anschließend die Kustomize Dateien an um die Fehler zu beheben.
 
 ### Deployment
+
 ```sh
 kubectl apply -k overlays/lab-1
 ```
 
 ### Clean-up
+
 ```sh
 kubectl delete -k overlays/lab-1
 ```

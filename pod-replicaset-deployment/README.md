@@ -14,6 +14,7 @@
 ## Pods
 
 Zuerst erstellen wir einen Namespace und starten drei Pods mit den Namen `nginx-pod`, `nginx-pod-2` und `nginx-pod-3`.
+
 ```sh
 kubectl create namespace lab-pods
 ```
@@ -56,6 +57,7 @@ Da drei `nginx` Pods im Cluster liefen und das ReplicaSet so konfiguriert ist, d
 Die mit `$ kubectl apply -f nginx-pod.yml [...]` erstellten Pods wurden nun vom ReplicaSet übernommen.
 
 Nun gut, starten wir unseren ersten `nginx` Pod erneut:
+
 ```sh
 kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml
 pod/nginx-pod created
@@ -119,6 +121,7 @@ deployment.apps/nginx-deployment created
 ```
 
 Und anschließend werfen wir einen Blick auf die Pods:
+
 ```sh
 $ kubectl -n lab-pods get pods
 NAME                                READY   STATUS    RESTARTS   AGE
@@ -170,7 +173,6 @@ Hier sehen wir eine Menge!
 
 - `pod-template-hash=85996f8dbd` ist ein einzigartiges Label, mit diesem wird sichergestellt, dass das ReplicaSet nur Ressourcen verwaltet, die ihm zugewiesen sind
 - `app=nginx` 
-
 
 Wenn wir nun wieder unsere drei Pods vom Anfang starten...
 

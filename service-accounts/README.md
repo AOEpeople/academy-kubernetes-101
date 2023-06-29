@@ -1,7 +1,9 @@
 # Service Accounts
+
 ```sh
 cd ~/kubernetes-101/service-accounts
 ```
+
 <!-- BEGIN mktoc -->
 
 - [Vorbereitungen](#vorbereitungen)
@@ -35,6 +37,7 @@ kubectl -n lab-sc describe sa your-name
 ```
 
 Überprüfe die Berechtigungen für den neuen User
+
 ```sh
 kubectl auth can-i list secrets --namespace lab-sc --as your-name
 # kubectl auth can-i list secrets --namespace lab-sc --as kevin

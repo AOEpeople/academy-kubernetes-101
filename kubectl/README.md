@@ -13,6 +13,7 @@ kubectl api-resources
 ```
 
 Erklärung einer Ressource
+
 ```shell
 kubectl explain pod
 kubectl explain pod --recursive --api-version v1
@@ -33,6 +34,7 @@ kubectl get pod etcd-controlplane -n kube-system
 ```
 
 Ausgabeformat definieren
+
 ```shell
 kubectl get namespaces default -o wide
 kubectl get namespaces default -o yaml
@@ -40,7 +42,9 @@ kubectl get namespaces default -o jsonpath='{.metadata.name}'
 ```
 
 ## Beschreiben von Objekten
+
 Detaillierte Informationen
+
 ```shell
 kubectl -n kube-system describe pod etcd-controlplane
 ```
@@ -54,16 +58,19 @@ kubectl run curl --image=curlimages/curl --command "curl" --command "google.de"
 ```
 
 Beobachten des Containers
+
 ```shell
 watch kubectl get pod curl
 ```
 
 Anzeigen der Ausgabe des Containers
+
 ```shell
 kubectl logs curl
 ```
 
 Löschen des Containers
+
 ```shell
 kubectl delete pod curl
 ```
@@ -113,7 +120,9 @@ kubectl get pods
 ```
 
 ## Cleanup
+
 Löscht alle Objekte in einem Namespace
+
 ```shell
 kubectl delete all --all
 ```
