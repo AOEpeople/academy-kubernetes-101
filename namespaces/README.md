@@ -2,14 +2,14 @@
 
 <!-- BEGIN mktoc -->
 
-- [Auflisen von Namespaces](#auflisten-von-namespaces)
+- [Auflisten von Namespaces](#auflisten-von-namespaces)
 - [Anlegen von Namespaces](#anlegen-von-namespaces)
 - [Namespaces nutzen](#namespaces-nutzen)
 - [Namespaces löschen](#namespaces-löschen)
 - [Namespaces via YAML anlegen](#namespaces-via-yaml-anlegen)
 <!-- END mktoc -->
 
-## Auflisen von Namespaces
+## Auflisten von Namespaces
 
 ```shell
 kubectl get namespace
