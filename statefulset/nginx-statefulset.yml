@@ -33,5 +33,5 @@ spec:
         - name: nginx
           image: bitnami/nginx:1.23
           ports:
-            - containerPort: 80i
+            - containerPort: 80
               name: web
