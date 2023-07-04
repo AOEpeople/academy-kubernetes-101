@@ -33,16 +33,5 @@ spec:
         - name: nginx
           image: bitnami/nginx:1.23
           ports:
-            - containerPort: 80
+            - containerPort: 80i
               name: web
-          volumeMounts:
-            - name: www
-              mountPath: /usr/share/nginx/html
-  volumeClaimTemplates:
-    - metadata:
-        name: www
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 1Gi
