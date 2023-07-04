@@ -107,8 +107,8 @@ Events:
 Bevor wir starten, löschen wir die alten Ressourcen:
 
 ```sh
-$ kubectl -n lab-pods delete replicaset nginx-rs
-$ kubectl -n lab-pods delete pod -l app=nginx
+kubectl -n lab-pods delete replicaset nginx-rs
+kubectl -n lab-pods delete pod -l app=nginx
 ```
 
 ### Deployment erstellen
@@ -116,14 +116,14 @@ $ kubectl -n lab-pods delete pod -l app=nginx
 Nun erstellen wir das Deployment:
 
 ```sh
-$ kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-deployment.yml
+kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-deployment.yml
 deployment.apps/nginx-deployment created
 ```
 
 Und anschließend werfen wir einen Blick auf die Pods:
 
 ```sh
-$ kubectl -n lab-pods get pods
+kubectl -n lab-pods get pods
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-85996f8dbd-lxs5p   1/1     Running   0          5s
 nginx-deployment-85996f8dbd-pwg9z   1/1     Running   0          5s
@@ -135,7 +135,7 @@ nginx-deployment-85996f8dbd-r77ql   1/1     Running   0          5s
 Mit `kubectl get rs` sehen wir das Replicaset, welches von unserem Deployment angelegt wurde und mit `kubectl describe rs` können wir uns dessen genaue Konfiguration anzeigen lassen.
 
 ```sh
-$ kubectl -n lab-pods get rs
+kubectl -n lab-pods get rs
 NAME                          DESIRED   CURRENT   READY   AGE
 nginx-deployment-85996f8dbd   3         3         3       29s
 ```
