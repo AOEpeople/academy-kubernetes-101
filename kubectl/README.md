@@ -96,10 +96,6 @@ kubectl delete deployment nginx
 Hinzufügen und Löschen von Objekten mittels deklarativer YAML Manifeste
 
 ```shell
-cat pod.yml
-```
-
-```shell
 kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/kubectl/pod.yml
 ```
 
