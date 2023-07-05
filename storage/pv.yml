@@ -10,12 +10,3 @@ spec:
     storage: 10Mi
   local:
     path: ./local-storage
-
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - minikube
