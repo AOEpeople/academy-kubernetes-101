@@ -110,7 +110,7 @@ kubectl -n appconfig exec deployment/app -- cat /config/app.properties
 Erstelle ein Secret und experimentiere etwas damit.
 
 ```shell
-kubectl create secret generic appsecret --from-literal=username=myfancyuser --from-literal=password=f8sD6S9s6
+kubectl -n appconfig create secret generic appsecret --from-literal=username=myfancyuser --from-literal=password=f8sD6S9s6
 ```
 
 Du brauchst Ideen?
