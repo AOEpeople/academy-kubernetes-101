@@ -1,0 +1,107 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kuard
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kuard
+  namespace: kuard
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "kuard.local"
+      http:
+        paths:
+          - backend:
+              service:
+                name: kuard
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kuard
+  name: kuard
+  namespace: kuard
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: kuard
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kuard
+  name: kuard
+  namespace: kuard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kuard
+  template:
+    metadata:
+      labels:
+        app: kuard
+    spec:
+      containers:
+        - image: gcr.io/kuar-demo/kuard-amd64:blue
+          name: kuard
+          env:
+            - name: log_level
+              valueFrom:
+                configMapKeyRef:
+                  name: kuard
+                  key: log_level
+            - name: super_sensitive_password
+              valueFrom:
+                secretKeyRef:
+                  name: kuard
+                  key: super_sensitive_password
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kuard
+  namespace: kuard
+spec:
+  maxReplicas: 4
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 80
+        type: Utilization
+    type: Resource
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kuard
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kuard
+  namespace: kuard
+data:
+  log_level: "error"
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: kuard
+  namespace: kuard
+data:
+  super_sensitive_password: c2RmYTdhczk4ZGY3YXNkZjg=
