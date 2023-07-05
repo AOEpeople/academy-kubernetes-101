@@ -49,7 +49,7 @@ kubectl -n appconfig edit deployment app
 
 ```yaml
     env:
-    - name: ENVIRONMENT
+    - name: FOO
       valueFrom:
         configMapKeyRef:
           name: appconfig
