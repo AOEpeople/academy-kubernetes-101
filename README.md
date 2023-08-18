@@ -3,7 +3,7 @@
 ([English below](#english))
 
 Die AOE Academy bietet interaktive Trainings, Workshops und Beratung von echten Expert:innen. Auch in diesem Training profitierst Du von unserem Wissen aus realen Projekten. Tauche mit dem Kubernetes 101 Training in die Welt von DevOps  ein und erkunde eine Vielzahl von hochaktuellen Themen, wie z.B.:
- 
+
 -	Bereitstellung containerisierter Anwendungen in einem Cluster
 -	Debuggen containerisierter Anwendungen
 -	Autoscaling für optimale Leistung
@@ -16,7 +16,7 @@ Die AOE Academy bietet interaktive Trainings, Workshops und Beratung von echten 
 
 Rüste dich mit dem Wissen und den Werkzeugen aus, um deine Kubernetes-Kenntnisse auf ein höheres Level zu bringen und in der Arbeit mit containerisierten Anwendungen erfolgreich zu sein. Lass uns gemeinsam auf diese Reise gehen!
 
-Anmeldung und weitere Infos: 
+Anmeldung und weitere Infos:
 
 [https://www.aoe.com/de/academy/cloud-devops/kubernetes-101.html](https://www.aoe.com/de/academy/cloud-devops/kubernetes-101.html)
 
@@ -24,7 +24,7 @@ Anmeldung und weitere Infos:
 
 AOE Academy offers interactive training sessions, workshops and consulting, provided by proven experts.
 In this training you will benefit from our knowledge from real projects. Dive into the world of DevOps with Kubernetes 101 training and explore a variety of cutting-edge topics, including:
- 
+
 -	Deploying containerized applications in a cluster
 -	Debugging containerized applications
 -	Autoscaling for optimal performance

@@ -73,7 +73,7 @@ nginx-pod-3   1/1     Running   0          4m2s
 ```
 
 Das ReplicaSet erkennt, dass ein neuer Pod mit label `app=nginx` gestartet wird und beendet ihn sofort.
-Solange das ReplicaSet mit dem generischen Label Selector `app=nginx` im Cluster besteht, können wir nur zwei Pods mit diesem Label gleichzeitig ausführen. 
+Solange das ReplicaSet mit dem generischen Label Selector `app=nginx` im Cluster besteht, können wir nur zwei Pods mit diesem Label gleichzeitig ausführen.
 
 Mit `kubectl describe rs nginx-rs` sehen wir ebenfalls, dass das ReplicaSet unseren Pod wieder gelöscht hat.
 
@@ -172,7 +172,7 @@ Events:
 Hier sehen wir eine Menge!
 
 - `pod-template-hash=85996f8dbd` ist ein einzigartiges Label, mit diesem wird sichergestellt, dass das ReplicaSet nur Ressourcen verwaltet, die ihm zugewiesen sind
-- `app=nginx` 
+- `app=nginx`
 
 Wenn wir nun wieder unsere drei Pods vom Anfang starten...
 
@@ -200,7 +200,7 @@ nginx-pod-3                         1/1     Running   0          2s
 
 - Deployment statt ReplicaSet nutzen
 - Labels können hier generischer sein
-- _Alles_ mit labeln versehen: `env=production`, `team=backend`, `maintainer=team-XYZ`, ... 
+- _Alles_ mit labeln versehen: `env=production`, `team=backend`, `maintainer=team-XYZ`, ...
 
 ## Weitere Ressourcen
 

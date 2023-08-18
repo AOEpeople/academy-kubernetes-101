@@ -21,7 +21,7 @@ cd academy-kubernetes-101-main/troubleshooting
 
 In diesem Lab deployen wir Ressourcen mit verschiedenen Problemen. Das Ziel ist herauszufinden, warum die Ressourcen nicht richtig funktionieren und anschließend die Fehler zu beheben.
 
-```sh 
+```sh
 kubectl create namespace lab-troubleshooting
 ```
 

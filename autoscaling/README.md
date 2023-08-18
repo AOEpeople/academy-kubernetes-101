@@ -11,13 +11,13 @@
 
 Namespace erstellen
 
-```sh 
+```sh
 $ kubectl create namespace lab-autoscaling
 ```
 
 Metrics Server in den `default` Namespace installieren
 
-```sh 
+```sh
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
@@ -61,6 +61,6 @@ Mit Load auf dem Webserver zeigt der HPA hohe Auslastung an (~300% sind nicht un
 
 ### Load stoppen
 
-Im Terminal mit dem busybox load-generator `<Ctrl>+C` drücken um den Container zu stoppen. 
+Im Terminal mit dem busybox load-generator `<Ctrl>+C` drücken um den Container zu stoppen.
 
-Im Terminal mit kubectl kann nun mit `kubectl -n lab-autoscaling get hpa php-apache --watch` beobachtet werden wie der Service wieder zurückskaliert wird. 
+Im Terminal mit kubectl kann nun mit `kubectl -n lab-autoscaling get hpa php-apache --watch` beobachtet werden wie der Service wieder zurückskaliert wird.

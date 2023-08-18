@@ -62,7 +62,7 @@ kubectl -n resource-management delete -f https://raw.githubusercontent.com/AOEpe
 ```shell
 kubectl -n resource-management apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/resource-management/incremental.yml
 kubectl -n resource-management describe quota resource-management-incremental
-kubectl -n resource-management get pods 
+kubectl -n resource-management get pods
 ```
 
 Wie viele Replicas sind möglich?

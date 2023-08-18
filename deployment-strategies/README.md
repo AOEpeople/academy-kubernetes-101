@@ -18,7 +18,7 @@ kubectl -n deployment-strategies apply -f https://raw.githubusercontent.com/AOEp
 
 ```shell
 kubectl -n deployment-strategies get pods --watch
-# am besten in zweitem Terminal 
+# am besten in zweitem Terminal
 ```
 
 neue version
@@ -47,7 +47,7 @@ kubectl -n deployment-strategies get deployments
 curl -H "Host: deployment-strategies-canary.local" http://nodea:30616/
 ```
 
-**Aufgabe: Nutze NGINX Ingress Controller´s Canary Routing Feature um ein Canary Deploymentvon `blue` auf `green` zu simulieren :)** 
+**Aufgabe: Nutze NGINX Ingress Controller´s Canary Routing Feature um ein Canary Deploymentvon `blue` auf `green` zu simulieren :)**
 
 ```shell
 kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/canary.yml

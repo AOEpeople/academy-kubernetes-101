@@ -64,7 +64,7 @@ kubectl -n lab-sfs describe statefulset web
 ```
 
 ```sh
-kubectl -n lab-sfs 
+kubectl -n lab-sfs
 Name:               web
 Namespace:          lab-sfs
 Selector:           app=nginx
