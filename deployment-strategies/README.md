@@ -75,7 +75,7 @@ curl -H "Host: deployment-strategies-bg.local" http://nodea:30616/
 kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/blue-green.yml
 ```
 
-## Cleanup:
+## Cleanup
 
 ```shell
 kubectl delete namespace deployment-strategies

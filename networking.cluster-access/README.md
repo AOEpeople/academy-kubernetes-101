@@ -104,7 +104,9 @@ curl http://nodea:30426/hello-nginx
 kubectl -n networking annotate ingress nginx nginx.ingress.kubernetes.io/rewrite-target='/'
 ```
 
-## Cleanup:
+## Cleanup
+
+Lösche die für das Lab angelegten Namespaces:
 
 ```shell
 kubectl delete namespace networking

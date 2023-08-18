@@ -80,7 +80,7 @@ kubectl -n resource-management get events --sort-by=lastTimestamp
 kubectl -n resource-management delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/resource-management/incremental.yml
 ```
 
-## Cleanup:
+## Cleanup
 
 ```shell
 kubectl delete namespace resource-management

@@ -10,7 +10,7 @@
 
 ## Vorbereitungen
 
-Namespace erstellen
+Erstelle einen neuen Namespace:
 
 ```sh
 kubectl create namespace lab-sc
@@ -18,21 +18,21 @@ kubectl create namespace lab-sc
 
 ## Service Account anlegen
 
-Erstelle einen Nutzer mit deinem Namen.
+Erstelle einen Nutzer mit deinem Namen:
 
 ```sh
 kubectl -n lab-sc create serviceaccount your-name
 # kubectl -n lab-sc create serviceaccount kevin
 ```
 
-Zeige den neuen Nutzer an
+Zeige den neuen Nutzer an:
 
 ```sh
 kubectl -n lab-sc describe sa your-name
 # kubectl -n lab-sc describe sa kevin
 ```
 
-Überprüfe die Berechtigungen für den neuen User
+Überprüfe die Berechtigungen für den neuen User:
 
 ```sh
 kubectl auth can-i list secrets --namespace lab-sc --as your-name
@@ -40,13 +40,13 @@ kubectl auth can-i list secrets --namespace lab-sc --as your-name
 no
 ```
 
-Erstelle eine ClusterRole, die Lese-Zugriff auf Secrets erlaubt.
+Erstelle eine `ClusterRole`, die Lese-Zugriff auf Secrets erlaubt:
 
 ```sh
 kubectl -n lab-sc apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/service-accounts/clusterrole.yml
 ```
 
-Erstelle ein `ClusterRole Binding` mit dem folgenden YAML Dokument.
+Erstelle ein `ClusterRoleBinding` mit dem folgenden YAML-Dokument:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -64,7 +64,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-Prüfe anschließend, ob du Secrets einsehen kannst.
+Prüfe anschließend, ob du Secrets einsehen kannst:
 
 ```sh
 kubectl auth can-i list secrets --namespace lab-sc --as your-user
@@ -93,5 +93,5 @@ yes
 
 ## Weiterführende Links
 
-- [RBAC Doku](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
-- [Service Accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)
+- [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+- [Kubernetes Service Accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/)

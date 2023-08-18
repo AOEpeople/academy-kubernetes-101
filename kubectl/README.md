@@ -4,6 +4,8 @@ Der Umgang mit kubectl, die Basics.
 
 ## Welche Ressourcen gibt es?
 
+Auflisten aller API Ressourcen
+
 ```shell
 kubectl api-resources
 ```
@@ -17,13 +19,19 @@ kubectl explain pod --recursive --api-version v1
 
 ## Auflisten von Objekten
 
+Auflisten aller Namespaces
+
 ```shell
 kubectl get namespace
 ```
 
+Auflisten aller Pods in allen Namespaces
+
 ```shell
 kubectl get pods --all-namespaces
 ```
+
+Auflisten eines Pods in einem Namespace
 
 ```shell
 kubectl get pod etcd-controlplane -n kube-system
@@ -39,7 +47,7 @@ kubectl get namespaces default -o jsonpath='{.metadata.name}'
 
 ## Beschreiben von Objekten
 
-Detaillierte Informationen
+Detaillierte Informationen über einen Pod abrufen
 
 ```shell
 kubectl -n kube-system describe pod etcd-controlplane
@@ -81,11 +89,15 @@ kubectl create deployment nginx --image nginx
 
 ## Editieren von Objekten
 
+Interaktives Anpassen eines Deployments
+
 ```shell
 kubectl edit deployment nginx
 ```
 
 ## Löschen von dedizierten Objekten
+
+Löschen eines Deployments
 
 ```shell
 kubectl delete deployment nginx
@@ -93,7 +105,7 @@ kubectl delete deployment nginx
 
 ## Deklaratives Erstellen von Objekten
 
-Hinzufügen und Löschen von Objekten mittels deklarativer YAML Manifeste
+Hinzufügen und Löschen von Objekten über deklarative YAML Manifeste
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/kubectl/pod.yml

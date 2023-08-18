@@ -56,7 +56,9 @@ Wie sieht der Service aus?
 kubectl -n networking get service nginx -o yaml
 ```
 
-## Cleanup:
+## Cleanup
+
+Lösche den für das Lab angelegten Namespace:
 
 ```shell
 kubectl delete namespace networking

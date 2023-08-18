@@ -1,6 +1,8 @@
 # Lab: Konfiguration von Anwendungen
 
-Bereite einige Objekte für dieses Lab vor:
+## Vorbereitung
+
+Erstelle einen neuen Namespace und ein Deployment:
 
 ```shell
 kubectl create namespace appconfig
@@ -29,7 +31,7 @@ kubectl -n appconfig exec deployment/app -- env
 
 ## ConfigMap
 
-Erstelle ein ConfigMap Objekt
+Erstelle eine `ConfigMap` Ressource:
 
 ```shell
 kubectl -n appconfig create configmap appconfig --from-literal "foo=barfromconfig"
@@ -41,7 +43,7 @@ Wie sieht das Manifest aus?
 kubectl -n appconfig get configmap appconfig -o yaml
 ```
 
-Beziehe den Wert der Environment Variable aus der ConfigMap
+Beziehe den Wert der Environment Variable aus der ConfigMap:
 
 ```shell
 kubectl -n appconfig edit deployment app
@@ -64,7 +66,7 @@ kubectl -n appconfig exec deployment/app -- env
 
 ## ConfigMap Mount
 
-Füge eine multiline Konfiguration der ConfigMap hinzu.
+Füge eine mehrzeilige Konfiguration der ConfigMap hinzu:
 
 ```shell
 kubectl -n appconfig edit configmap appconfig
@@ -107,7 +109,7 @@ kubectl -n appconfig exec deployment/app -- cat /config/app.properties
 
 ## Secrets
 
-Erstelle ein Secret und experimentiere etwas damit.
+Erstelle ein Secret und experimentiere etwas damit:
 
 ```shell
 kubectl -n appconfig create secret generic appsecret --from-literal=username=myfancyuser --from-literal=password=f8sD6S9s6
@@ -120,6 +122,8 @@ Du brauchst Ideen?
 - Mounte den Wert eines Secrets als Datei
 
 ## Cleanup
+
+Lösche den für das Lab angelegten Namespace:
 
 ```shell
 kubectl delete namespace appconfig
