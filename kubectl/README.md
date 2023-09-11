@@ -122,11 +122,3 @@ kubectl delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes
 ```shell
 kubectl get pods
 ```
-
-## Cleanup
-
-Löscht alle Objekte in einem Namespace
-
-```shell
-kubectl delete all --all
-```
