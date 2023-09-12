@@ -211,6 +211,14 @@ nginx-pod-3                         1/1     Running   0          2s
 - Labels können hier generischer sein
 - _Alles_ mit labeln versehen: `env=production`, `team=backend`, `maintainer=team-XYZ`, ...
 
+## Cleanup
+
+Lösche den für das Lab angelegten Namespace:
+
+```shell
+kubectl delete namespace lab-pods
+```
+
 ## Weitere Ressourcen
 
 - [Pods](https://kubernetes.io/docs/concepts/workloads/pods/)
