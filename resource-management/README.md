@@ -30,6 +30,11 @@ Prüfe die Pods und die letzten Events um das Verhalten bei zu hoher Memory-Nutz
 kubectl -n resource-management get pods --watch
 kubectl -n resource-management get events --sort-by=lastTimestamp
 kubectl -n resource-management top pods --sum
+```
+
+Prüfe den Status des `resource-management-cpu` Containers im Pod:
+
+```shell
 kubectl -n resource-management describe pod [POD_NAME]
 ```
 
@@ -45,6 +50,12 @@ Erstelle eine Deployment, das die CPU auslastet:
 
 ```shell
 kubectl -n resource-management apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/resource-management/cpu.yml
+```
+
+Prüfe die Resource Requests und Limits des erstellen Deployments:
+
+```shell
+kubectl -n resource-management describe pod [POD_NAME]
 ```
 
 Prüfe die Auslastung der Pods:
