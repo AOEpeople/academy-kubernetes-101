@@ -17,10 +17,9 @@ spec:
     spec:
       containers:
         - command:
-            - "cat"
-            - "/dev/zero"
-            - ">"
-            - "/dev/null"
+            - "/bin/sh"
+            - "-c"
+            - "cat /dev/zero > /dev/null"
           image: busybox
           name: resource-management-cpu
           resources:
