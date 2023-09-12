@@ -95,7 +95,7 @@ kubectl -n ingress-nginx logs deployment/ingress-nginx-controller
 Editiere das Ingress Objekt und ändere den Pfad zu `/hello-nginx`
 
 ```shell
-kubectl -n networking get ingress nginx -o yaml
+kubectl -n networking edit ingress nginx
 ```
 
 Ansprechen:
