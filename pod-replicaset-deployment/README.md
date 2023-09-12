@@ -67,6 +67,7 @@ Und siehe da: wir haben wieder... zwei Pods.
 
 ```sh
 kubectl -n lab-pods get pods
+
 NAME          READY   STATUS    RESTARTS   AGE
 nginx-pod-2   1/1     Running   0          4m2s
 nginx-pod-3   1/1     Running   0          4m2s
@@ -79,6 +80,7 @@ Mit `kubectl describe rs nginx-rs` sehen wir ebenfalls, dass das ReplicaSet unse
 
 ```sh
 kubectl -n lab-pods describe rs nginx-rs
+
 Name:         nginx-rs
 Namespace:    default
 Selector:     app=nginx
@@ -124,6 +126,7 @@ Und anschließend werfen wir einen Blick auf die Pods:
 
 ```sh
 kubectl -n lab-pods get pods
+
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-85996f8dbd-lxs5p   1/1     Running   0          5s
 nginx-deployment-85996f8dbd-pwg9z   1/1     Running   0          5s
@@ -136,12 +139,14 @@ Mit `kubectl get rs` sehen wir das Replicaset, welches von unserem Deployment an
 
 ```sh
 kubectl -n lab-pods get rs
+
 NAME                          DESIRED   CURRENT   READY   AGE
 nginx-deployment-85996f8dbd   3         3         3       29s
 ```
 
 ```sh
 kubectl -n lab-pods describe rs nginx-deployment-85996f8dbd
+
 Name:           nginx-deployment-85996f8dbd
 Namespace:      default
 Selector:       app=nginx,pod-template-hash=85996f8dbd
@@ -178,6 +183,8 @@ Wenn wir nun wieder unsere drei Pods vom Anfang starten...
 
 ```sh
 kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-2.yml -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod-3.yml
+```
+```sh
 pod/nginx-pod created
 pod/nginx-pod-2 created
 pod/nginx-pod-3 created
@@ -187,6 +194,8 @@ pod/nginx-pod-3 created
 
 ```sh
 kubectl -n lab-pods get pods
+````
+```sh
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-85996f8dbd-lxs5p   1/1     Running   0          15m
 nginx-deployment-85996f8dbd-pwg9z   1/1     Running   0          15m
