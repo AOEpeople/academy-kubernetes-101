@@ -19,7 +19,7 @@ kubectl -n networking get pod nginx -o jsonpath='{.status.podIP}'
 Ansprechen eines Pods aus einem anderen Pod heraus:
 
 ```shell
-kubectl -n networking exec curl -- curl 192.x.x.x
+kubectl -n networking exec curl -- curl 192.168.x.x
 ```
 
 oder
@@ -33,7 +33,7 @@ kubectl -n networking exec curl -- curl $(kubectl -n networking get pod nginx -o
 Pod via Cluster-interne Domain ansprechen:
 
 ```shell
-kubectl -n networking exec curl -- curl 192-168-248-130.networking.pod.cluster.local
+kubectl -n networking exec curl -- curl 192-168-x-x.networking.pod.cluster.local
 ```
 
 # Service / Pod exposen
