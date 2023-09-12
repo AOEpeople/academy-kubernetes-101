@@ -70,12 +70,18 @@ Wie sieht das Objekt dazu aus?
 kubectl -n networking get ingress nginx -o yaml
 ```
 
+HTTP `NodePort` des Ingress Controller Services bestimmen:
+
+```shell
+export NODE_PORT_HTTP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')
+```
+
 Ansprechen über NodePort des Ingress Controller Services:
 
 ```shell
-curl http://nodea:30426/
-curl http://nodeb:30426/
-curl http://controlplane:30426/
+curl http://nodea:${NODE_PORT_HTTP}/
+curl http://nodeb:${NODE_PORT_HTTP}/
+curl http://controlplane:${NODE_PORT_HTTP}/
 ```
 
 Was sagt der Controller dazu:
@@ -95,7 +101,7 @@ kubectl -n networking get ingress nginx -o yaml
 Ansprechen:
 
 ```shell
-curl http://nodea:30426/hello-nginx
+curl http://nodea:${NODE_PORT_HTTP}/hello-nginx
 ```
 
 404? Wieso?
