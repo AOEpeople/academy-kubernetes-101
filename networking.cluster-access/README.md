@@ -70,7 +70,7 @@ Wie sieht das Objekt dazu aus?
 kubectl -n networking get ingress nginx -o yaml
 ```
 
-HTTP `NodePort` des Ingress Controller Services bestimmen:
+Bestimme und exportiere den HTTP `NodePort` des Ingress Controller Services als Umgebungsvariable im Terminal:
 
 ```shell
 export NODE_PORT_HTTP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')

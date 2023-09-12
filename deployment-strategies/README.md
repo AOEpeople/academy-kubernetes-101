@@ -9,7 +9,12 @@ kubectl create namespace deployment-strategies
 
 # Falls nicht mehr installiert:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
-kubectl -n ingress-nginx get service ingress-nginx-controller # node port herausfinden
+```
+
+Bestimme und exportiere den HTTP `NodePort` des Ingress Controller Services als Umgebungsvariable im Terminal:
+
+```shell
+export NODE_PORT_HTTP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}')
 ```
 
 ## Rolling Updates
@@ -57,7 +62,7 @@ kubectl -n deployment-strategies get deployments
 Greife über den Ingress auf den Service zu:
 
 ```shell
-curl -H "Host: deployment-strategies-canary.local" http://nodea:30616/
+curl -H "Host: deployment-strategies-canary.local" http://nodea:${NODE_PORT_HTTP}/
 ```
 
 **Aufgabe**: Nutze die Canary-Annotations von `ingress-nginx` um ein Canary Deployment von `blue` auf `green` zu simulieren (siehe [ingress-nginx Canary Deployment Dokumentation](https://kubernetes.github.io/ingress-nginx/examples/canary/#create-ingress-pointing-to-your-canary-deployment))
@@ -85,7 +90,7 @@ kubectl -n deployment-strategies get deployments
 ```
 
 ```shell
-curl -H "Host: deployment-strategies-bg.local" http://nodea:30616/
+curl -H "Host: deployment-strategies-bg.local" http://nodea:${NODE_PORT_HTTP}/
 ```
 
 **Aufgabe**: Switche den Ingress von `blue` auf `green` und simuliere damit ein Blue-Green Deployment.
