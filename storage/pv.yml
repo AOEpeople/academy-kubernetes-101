@@ -3,6 +3,14 @@ kind: PersistentVolume
 metadata:
   name: my-pv
 spec:
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - nodea
   storageClassName: ""
   accessModes:
     - ReadWriteMany
