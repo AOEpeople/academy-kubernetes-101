@@ -61,7 +61,7 @@ kubectl -n networking expose pod nginx --port 80 --name nginx
 Eine Ingress Objekt anlegen, das auf den Service verweist:
 
 ```shell
-kubectl -n networking create ingress nginx --class=nginx --rule="/=nginx:80"
+kubectl -n networking create ingress nginx --class=nginx --rule="www.example.com/=nginx:80"
 ```
 
 Wie sieht das Objekt dazu aus?
@@ -79,9 +79,14 @@ export NODE_PORT_HTTP=$(kubectl get svc -n ingress-nginx ingress-nginx-controlle
 Ansprechen über NodePort des Ingress Controller Services:
 
 ```shell
-curl http://nodea:${NODE_PORT_HTTP}/
-curl http://nodeb:${NODE_PORT_HTTP}/
-curl http://controlplane:${NODE_PORT_HTTP}/
+curl -H "Host: www.example.com" http://nodea:${NODE_PORT_HTTP}/
+curl -H "Host: www.example.com" http://nodeb:${NODE_PORT_HTTP}/
+curl -H "Host: www.example.com" http://controlplane:${NODE_PORT_HTTP}/
+```
+
+Versuche mal einen anderen Host:
+```shell
+curl -H "Host: www.foo.com" http://nodea:${NODE_PORT_HTTP}/
 ```
 
 Was sagt der Controller dazu:
@@ -101,7 +106,7 @@ kubectl -n networking edit ingress nginx
 Ansprechen:
 
 ```shell
-curl http://nodea:${NODE_PORT_HTTP}/hello-nginx
+curl -H "Host: www.example.com" http://nodea:${NODE_PORT_HTTP}/hello-nginx
 ```
 
 404? Wieso?
