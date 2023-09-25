@@ -58,25 +58,32 @@ kubectl -n kube-system describe pod etcd-controlplane
 Starten eines Containers via `kubectl`
 
 ```shell
-kubectl run curl --image=curlimages/curl --command "curl" --command "google.de"
+kubectl run nginx --image=nginx
 ```
 
 Beobachten des Containers
 
 ```shell
-watch kubectl get pod curl
+watch kubectl get pod nginx
 ```
 
 Anzeigen der Ausgabe des Containers
 
 ```shell
-kubectl logs curl
+kubectl logs nginx
+```
+
+
+Ausführen eines Prozesses auf dem Container
+
+```shell
+kubectl exec nginx -- nginx -v
 ```
 
 Löschen des Containers
 
 ```shell
-kubectl delete pod curl
+kubectl delete pod nginx
 ```
 
 ## Imperatives Erstellen von Objekten
