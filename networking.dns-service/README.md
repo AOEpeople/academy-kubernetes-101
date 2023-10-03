@@ -3,9 +3,9 @@
 Bereite einige Objekte für dieses Lab vor:
 
 ```shell
-kubectl create namespace networking
-kubectl -n networking run nginx --image nginx
-kubectl -n networking run curl --image curlimages/curl --command "sleep" --command "infinity"
+kubectl create namespace dns-service
+kubectl -n dns-service run nginx --image nginx
+kubectl -n dns-service run curl --image curlimages/curl --command "sleep" --command "infinity"
 ```
 
 # Pod IP
@@ -13,19 +13,19 @@ kubectl -n networking run curl --image curlimages/curl --command "sleep" --comma
 Finde die IP Adresse eines Pods heraus:
 
 ```shell
-kubectl -n networking get pod nginx -o jsonpath='{.status.podIP}'
+kubectl -n dns-service get pod nginx -o jsonpath='{.status.podIP}'
 ```
 
 Ansprechen eines Pods aus einem anderen Pod heraus:
 
 ```shell
-kubectl -n networking exec curl -- curl 192.168.x.x
+kubectl -n dns-service exec curl -- curl 192.168.x.x
 ```
 
 oder
 
 ```shell
-kubectl -n networking exec curl -- curl $(kubectl -n networking get pod nginx -o jsonpath='{.status.podIP}')
+kubectl -n dns-service exec curl -- curl $(kubectl -n dns-service get pod nginx -o jsonpath='{.status.podIP}')
 ```
 
 # Pod DNS
@@ -33,7 +33,7 @@ kubectl -n networking exec curl -- curl $(kubectl -n networking get pod nginx -o
 Pod via Cluster-interne Domain ansprechen:
 
 ```shell
-kubectl -n networking exec curl -- curl 192-168-x-x.networking.pod.cluster.local
+kubectl -n dns-service exec curl -- curl 192-168-x-x.networking.pod.cluster.local
 ```
 
 # Service / Pod exposen
@@ -41,19 +41,19 @@ kubectl -n networking exec curl -- curl 192-168-x-x.networking.pod.cluster.local
 Einen Pod via Service exposen:
 
 ```shell
-kubectl -n networking expose pod nginx --port 80 --name nginx
+kubectl -n dns-service expose pod nginx --port 80 --name nginx
 ```
 
 Pod via Service Domain ansprechen:
 
 ```shell
-kubectl -n networking exec curl -- curl nginx.networking.svc.cluster.local
+kubectl -n dns-service exec curl -- curl nginx.networking.svc.cluster.local
 ```
 
 Wie sieht der Service aus?
 
 ```shell
-kubectl -n networking get service nginx -o yaml
+kubectl -n dns-service get service nginx -o yaml
 ```
 
 ## Cleanup
