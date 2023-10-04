@@ -33,7 +33,7 @@ kubectl -n dns-service exec curl -- curl $(kubectl -n dns-service get pod nginx 
 Pod via Cluster-interne Domain ansprechen:
 
 ```shell
-kubectl -n dns-service exec curl -- curl 192-168-x-x.networking.pod.cluster.local
+kubectl -n dns-service exec curl -- curl 192-168-x-x.dns-service.pod.cluster.local
 ```
 
 # Service / Pod exposen
@@ -47,7 +47,7 @@ kubectl -n dns-service expose pod nginx --port 80 --name nginx
 Pod via Service Domain ansprechen:
 
 ```shell
-kubectl -n dns-service exec curl -- curl nginx.networking.svc.cluster.local
+kubectl -n dns-service exec curl -- curl nginx.dns-service.svc.cluster.local
 ```
 
 Wie sieht der Service aus?
@@ -61,5 +61,5 @@ kubectl -n dns-service get service nginx -o yaml
 Lösche den für das Lab angelegten Namespace:
 
 ```shell
-kubectl delete namespace networking
+kubectl delete namespace dns-service
 ```
