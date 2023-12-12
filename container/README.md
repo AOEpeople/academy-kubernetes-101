@@ -47,7 +47,10 @@ oder
 docker rm -f kubernetes-101
 ```
 
-## Multi stage builds
+## Multi-stage builds
+
+Beispiel aus der [Docker Dokumentation](https://docs.docker.com/build/building/multi-stage/):
+
 ```
 FROM golang:1.21
 WORKDIR /src
