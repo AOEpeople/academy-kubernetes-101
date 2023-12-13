@@ -120,6 +120,6 @@ kubectl -n cluster-access annotate ingress nginx nginx.ingress.kubernetes.io/rew
 Lösche die für das Lab angelegten Namespaces:
 
 ```shell
-kubectl delete namespace networking
+kubectl delete namespace cluster-access
 kubectl delete namespace ingress-nginx
 ```
