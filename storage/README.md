@@ -59,3 +59,12 @@ Anschließend verbinde dich auf den `nginx` Container. Hier sollte im selben Ver
 
 - [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 - [kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+## Cleanup
+
+Lösche die für das Lab angelegten Ressourcen:
+
+```sh
+kubectl delete namespace lab-storage
+kubectl delete pv my-pv
+```
