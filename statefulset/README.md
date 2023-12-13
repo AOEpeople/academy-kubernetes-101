@@ -132,3 +132,11 @@ Es dauert eine Weile bis alle Pods aktualisiert wurden. Alternativ kann das Stat
 
 - [StatefulSet Doku](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 - [DaemonSet Doku](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
+
+## Cleanup
+
+Lösche die für das Lab angelegten Ressourcen:
+
+```sh
+kubectl delete namespace lab-sts
+```
