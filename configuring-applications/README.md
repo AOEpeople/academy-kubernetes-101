@@ -50,12 +50,20 @@ kubectl -n appconfig edit deployment app
 ```
 
 ```yaml
-    env:
-    - name: FOO
-      valueFrom:
-        configMapKeyRef:
-          name: appconfig
-          key: foo
+spec:
+  ...
+  template:
+    ...
+    spec:
+      ...
+      containers:
+        - ...
+          env:
+            - name: FOO
+              valueFrom:
+                configMapKeyRef:
+                  name: appconfig
+                  key: foo
 ```
 
 Kommt sie im Container an?
@@ -84,21 +92,25 @@ kubectl -n appconfig edit deployment app
 ```
 
 ```yaml
-  spec:
-    containers:
-       ...
-       volumeMounts:
-        - name: config
-          mountPath: "/config"
-          readOnly: true
+spec:
+  ...
+  template:
     ...
-    volumes:
-    - name: config
-      configMap:
-        name: appconfig
-        items:
-        - key: "app.properties"
-          path: "app.properties"
+    spec:
+      containers:
+        ...
+        volumeMounts:
+          - name: config
+            mountPath: "/config"
+            readOnly: true
+      ...
+      volumes:
+      - name: config
+        configMap:
+          name: appconfig
+          items:
+          - key: "app.properties"
+            path: "app.properties"
 ```
 
 Kommt die Konfiguration im Container an?
