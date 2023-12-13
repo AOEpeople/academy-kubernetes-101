@@ -18,13 +18,13 @@
 Neuen Namespace erstellen
 
 ```sh
-kubectl create namespace lab-sfs
+kubectl create namespace lab-sts
 ```
 
 ### StatefulSet erstellen
 
 ```sh
-kubectl -n lab-sfs apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/statefulset/nginx-statefulset.yml
+kubectl -n lab-sts apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/statefulset/nginx-statefulset.yml
 ```
 
 Dies erstellt folgende Ressourcen:
@@ -38,7 +38,7 @@ Dies erstellt folgende Ressourcen:
 **Pods**
 
 ```sh
-kubectl -n lab-sfs get pods
+kubectl -n lab-sts get pods
 NAME    READY   STATUS    RESTARTS   AGE
 web-0   1/1     Running   0          60s
 web-1   1/1     Running   0          60s
@@ -48,25 +48,25 @@ web-2   1/1     Running   0          60s
 **Service**
 
 ```sh
-kubectl -n lab-sfs describe svc nginx
+kubectl -n lab-sts describe svc nginx
 ```
 
 **StatefulSet**
 
 ```sh
-kubectl -n lab-sfs get statefulsets
+kubectl -n lab-sts get statefulsets
 NAME   READY   AGE
 web    3/3     69s
 ```
 
 ```sh
-kubectl -n lab-sfs describe statefulset web
+kubectl -n lab-sts describe statefulset web
 ```
 
 ```sh
-kubectl -n lab-sfs
+kubectl -n lab-sts
 Name:               web
-Namespace:          lab-sfs
+Namespace:          lab-sts
 Selector:           app=nginx
 Replicas:           3 desired | 3 total
 Update Strategy:    RollingUpdate
@@ -76,11 +76,11 @@ Update Strategy:    RollingUpdate
 ### Hochskalieren
 
 ```sh
-kubectl -n lab-sfs scale statefulset web --replicas=5
+kubectl -n lab-sts scale statefulset web --replicas=5
 ```
 
 ```sh
-kubectl -n lab-sfs get pods
+kubectl -n lab-sts get pods
 NAME    READY   STATUS    RESTARTS   AGE
 web-0   1/1     Running   0          15m
 web-1   1/1     Running   0          15m
@@ -98,7 +98,7 @@ web-4   1/1     Running   0          27s
 Folgender Befehl kann genutzt werden um die Änderung zu validieren
 
 ```sh
-kubectl -n lab-sfs get pods -o jsonpath='{.items[*].spec.containers[0].image}'
+kubectl -n lab-sts get pods -o jsonpath='{.items[*].spec.containers[0].image}'
 ```
 
 Der Output sollte folgendes zeigen (hier mit 3 Replicas):
@@ -112,10 +112,10 @@ Mit `watch` kann der Output periodisch überprüft werden.
 
 ```sh
 # mit watch
-watch kubectl -n lab-sfs get pods -o jsonpath='{.items[*].spec.containers[0].image}'
+watch kubectl -n lab-sts get pods -o jsonpath='{.items[*].spec.containers[0].image}'
 
 # oder mit while
-while true; do clear; date +"%H:%m:%S"; echo ""; kubectl -n lab-sfs get pods -o jsonpath='{.items[*].spec.containers[0].image}'; sleep 2; done
+while true; do clear; date +"%H:%m:%S"; echo ""; kubectl -n lab-sts get pods -o jsonpath='{.items[*].spec.containers[0].image}'; sleep 2; done
 ```
 
 <details>
