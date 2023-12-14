@@ -58,3 +58,11 @@ Mit Load auf dem Webserver zeigt der HPA hohe Auslastung an (~300% sind nicht un
 Im Terminal mit dem busybox load-generator `<Ctrl>+C` drücken um den Container zu stoppen.
 
 Im Terminal mit kubectl kann nun mit `kubectl -n lab-autoscaling get hpa php-apache --watch` beobachtet werden wie der Service wieder zurückskaliert wird.
+
+## Cleanup
+
+Lösche den für das Lab angelegten Namespace:
+
+```shell
+kubectl delete namespace lab-autoscaling
+```
