@@ -15,12 +15,6 @@ Namespace erstellen
 kubectl create namespace lab-autoscaling
 ```
 
-Metrics Server in den `default` Namespace installieren
-
-```sh
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
-```
-
 ## Autoscaling
 
 ### HPA (Horizontal Pod Autoscaler)
