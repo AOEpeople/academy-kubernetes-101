@@ -116,7 +116,7 @@ kubectl -n deployment-strategies get deployments
 curl -H "Host: deployment-strategies-bg.local" http://nodea:${NODE_PORT_HTTP}/
 ```
 
-**Aufgabe**: Switche den Ingress von `blue` auf `green` und simuliere damit ein Blue-Green Deployment:
+**Aufgabe**: Switche den Ingress von `blue` auf `green`, simuliere damit ein Blue-Green Deployment und prüfe das Verhalten des Endpunkts:
 
 ```shell
 kubectl -n deployment-strategies edit ingress deployment-strategies-bg
