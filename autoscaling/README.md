@@ -12,7 +12,7 @@
 Namespace erstellen
 
 ```sh
-$ kubectl create namespace lab-autoscaling
+kubectl create namespace lab-autoscaling
 ```
 
 Metrics Server in den `default` Namespace installieren
