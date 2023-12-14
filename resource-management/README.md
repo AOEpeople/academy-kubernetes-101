@@ -29,7 +29,6 @@ Prüfe die Pods und die letzten Events um das Verhalten bei zu hoher Memory-Nutz
 ```shell
 kubectl -n resource-management get pods --watch
 kubectl -n resource-management get events --sort-by=lastTimestamp
-kubectl -n resource-management top pods --sum
 ```
 
 Prüfe den Status des `resource-management-cpu` Containers im Pod:
