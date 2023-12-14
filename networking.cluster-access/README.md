@@ -10,13 +10,13 @@ kubectl -n cluster-access run curl --image curlimages/curl --command "sleep" --c
 
 ## port-forward
 
-Starte das Port Forwarding:
+Starte in einem neuen Terminal das Port Forwarding:
 
 ```shell
 kubectl -n cluster-access port-forward pod/nginx 8080:80
 ```
 
-Starte das Port Forwarding im Hintergrund:
+Alternativ könnte man das Port Forwarding auch im gleichen Terminal starten und in den Hintergrund schieben:
 
 ```shell
 kubectl -n cluster-access port-forward pod/nginx 8080:80 &
