@@ -2,7 +2,7 @@
 
 Baue dir deinen eigenen Container und experimentiere etwas damit.
 
-Nutze dafür das [`Dockerfile`](Dockerfile):
+Nutze dafür den folgenden Text als Inhalt für das [`Dockerfile`](Dockerfile):
 
 ```dockerfile
 FROM nginx:alpine
