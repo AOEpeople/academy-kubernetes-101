@@ -132,6 +132,8 @@ Lösche den für das Lab angelegten Namespace und die clusterweiten Ressourcen:
 kubectl delete namespace lab-rbac
 kubectl delete clusterrolebindings read-secrets
 kubectl delete clusterrole secret-reader
+kubectl delete clusterrolebindings create-secrets
+kubectl delete clusterrole create-secret
 ```
 
 ## Weiterführende Links
