@@ -16,6 +16,8 @@ kubectl create namespace pod-security
 kubectl label --overwrite namespace pod-security pod-security.kubernetes.io/enforce=baseline
 ```
 
+- *Tipp*: In der [Kubernetes Dokumentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/#baseline) werden die Policies des `baseline` Profils beschrieben.
+
 - Erstelle ein Deployment, das einen `nginx` Container starten möchte:
 
 ```shell
@@ -51,6 +53,8 @@ Entferne `privileged: true` aus dem `securityContext` oder setze den Wert auf `f
 ## Restricted
 
 - Der Namespace soll nun stärker abgesichert werden, setze dafür das Pod Security Standards Profil auf `restricted`.
+
+- *Tipp*: In der [Kubernetes Dokumentation](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted) werden die Policies des `restricted` Profils beschrieben.
 
 - Skaliere das `nginx` Deployment temporär auf 0 Replicas herunter und skaliere es danach wieder auf 1 Replica hoch.
 
