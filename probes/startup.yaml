@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: startup
+  name: startup
+  namespace: probes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: startup
+  template:
+    metadata:
+      labels:
+        app: startup
+    spec:
+      containers:
+        - image: nginx
+          name: startup
+          command:
+            - bash
+            - -c
+            # sleep a random duration between 40 and 60 seconds before starting nginx to simulate dynamic application startup duration
+            - sleep $(($RANDOM%(60-40+1)+40)); exec nginx -g "daemon off;"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: startup
+  name: startup
+  namespace: probes
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: startup
+  type: ClusterIP

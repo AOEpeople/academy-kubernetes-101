@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: readiness
+  name: readiness
+  namespace: probes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readiness
+  template:
+    metadata:
+      labels:
+        app: readiness
+    spec:
+      containers:
+        - image: nginx
+          name: readiness
+          command:
+            - sh
+            - -c
+            # sleep for 25 seconds before starting nginx
+            - sleep 25; exec nginx -g "daemon off;"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: readiness
+  name: readiness
+  namespace: probes
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: readiness
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: readiness-checker
+  name: readiness-checker
+  namespace: probes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readiness-checker
+  template:
+    metadata:
+      labels:
+        app: readiness-checker
+    spec:
+      containers:
+        - image: curlimages/curl
+          name: readiness-checker
+          command:
+            - sh
+            - -c
+            # continuosly check cluster-internal access to the readiness service
+            - while true; do echo $(date) $(curl -s -o /dev/null -w "%{http_code}" readiness.probes.svc.cluster.local); sleep 1; done
