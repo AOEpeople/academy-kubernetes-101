@@ -50,3 +50,9 @@ Namespaces können natürlich wie jede Ressource als YAML verwaltet werden
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/namespaces/berta.yml
 ```
+
+Analog dazu können sie auch wieder entfernt werden:
+
+```shell
+kubectl delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/namespaces/berta.yml
+```
