@@ -95,6 +95,8 @@ Was sagt der Controller dazu:
 kubectl -n ingress-nginx logs deployment/ingress-nginx-controller
 ```
 
+*Tipp*: Auf dem Standard Log Level loggt der `ingress-nginx-controller` nur Aufrufe für Pfade für die es ein passendes Ingress Objekt gibt.
+
 ## Pfade
 
 Editiere das Ingress Objekt und ändere den Pfad zu `/hello-nginx`
