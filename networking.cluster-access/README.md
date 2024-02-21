@@ -85,6 +85,7 @@ curl -H "Host: www.example.com" http://controlplane:${NODE_PORT_HTTP}/
 ```
 
 Versuche mal einen anderen Host:
+
 ```shell
 curl -H "Host: www.foo.com" http://nodea:${NODE_PORT_HTTP}/
 ```
@@ -116,6 +117,11 @@ curl -H "Host: www.example.com" http://nodea:${NODE_PORT_HTTP}/hello-nginx
 ```shell
 kubectl -n cluster-access annotate ingress nginx nginx.ingress.kubernetes.io/rewrite-target='/'
 ```
+
+## Weiterführende Aufgaben
+
+- Erstelle ein Ingress Objekt, das einen Service unter zwei Domains erreichbar macht und prüfe den Zugriff
+- Erstelle ein Ingress Objekt, das zwei verschiedene Services unter der gleichen Domain aber mit unterschiedlichen Unterpfaden erreichbar macht und prüfe den Zugriff
 
 ## Cleanup
 

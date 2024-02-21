@@ -128,6 +128,18 @@ Lösche die erstellten Ressourcen:
 kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/blue-green.yml
 ```
 
+## Weiterführende Aufgaben
+
+### RollingUpdate
+
+- Rollback
+    - Erstelle ein Deployment mit der `RollingUpdate` Strategie, dem Image `docker.io/nginx` und zwei Replicas
+    - Ändere das Image auf das nicht existierende Image `docker.io/enginex` und prüfe was passiert
+    - Rolle das Deployment via `kubectl rollout` zurück auf die vorherige Version
+- Fine-Tuning
+    - Erstelle ein Deployment mit der `RollingUpdate` Strategie, dem Image `docker.io/nginx` und 5 Replicas
+    - Teste welche Auswirkungen die Konfigurationsoptionen `maxSurge` und `maxUnavailable` auf das Rolling Update haben
+
 ## Cleanup
 
 Lösche die für das Lab angelegten Namespaces:

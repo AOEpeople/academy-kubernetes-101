@@ -61,6 +61,12 @@ kubectl -n pods exec -ti execpod -- bash
 # kubectl -n pods delete pod execpod
 ```
 
+## Weiterführende Aufgaben
+
+1. Erstelle im `pods` Namespace einen Pod zum Debugging mit dem Namen `debug-pod` und dem Image `alpine` sodass direkt eine interaktive Shell (z.B. `/bin/sh`) geöffnet wird
+    - *Tipp*: Prüfe was die Flags `-i` und `-t` von `kubectl run` machen
+2. Installiere im `debug-pod` Pod das `curl` Package und teste die Verbindung zu `https://www.aoe.com/de/academy/cloud-devops/kubernetes-101.html`
+
 ## Cleanup
 
 Lösche den für das Lab angelegten Namespace:

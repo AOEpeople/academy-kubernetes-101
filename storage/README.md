@@ -55,10 +55,9 @@ kubectl -n <namespace> exec -it <pod> --container <container-name> -- /bin/sh
 
 Anschließend verbinde dich auf den `nginx` Container. Hier sollte im selben Verzeichnis `/my-pvc/` die eben im `busybox` Container erstellte Datei liegen.
 
-## Weiterführende Links
+## Weiterführende Aufgaben
 
-- [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
-- [kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+Nutze für einen neuen Persistent Volume Claim statt des `volumeName` Attributs einen Label-Selektor um ein passendes Persistent Volume zu selektieren.
 
 ## Cleanup
 
@@ -68,3 +67,8 @@ Lösche die für das Lab angelegten Ressourcen:
 kubectl delete namespace lab-storage
 kubectl delete pv my-pv
 ```
+
+## Weiterführende Links
+
+- [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+- [kubectl Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/)

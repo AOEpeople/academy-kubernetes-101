@@ -113,16 +113,11 @@ kubectl auth can-i create secrets --namespace lab-rbac --as system:serviceaccoun
 # no
 ```
 
-## Lab Aufgaben
+## Weiterführende Aufgaben
 
 1. Erstelle eine neue ClusterRole namens `create-secret`, die das Erstellen von Secrets erlaubt
 2. Weise dem ServiceAccount die neu erstellte Rolle zu
 3. Verifiziere, dass der ServiceAccount nun Secrets im Namespace `lab-rbac` anlegen kannst
-
-```sh
-kubectl auth can-i create secrets --namespace lab-rbac --as system:serviceaccount:lab-rbac:fancy-service
-# yes
-```
 
 ## Cleanup
 

@@ -47,9 +47,9 @@ oder
 docker rm -f kubernetes-101
 ```
 
-## Multi-stage builds
+## Weiterführende Aufgaben
 
-Beispiel aus der [Docker Dokumentation](https://docs.docker.com/build/building/multi-stage/):
+1. Baue ein Image mit dem folgenden Multi-Stage Build Beispiel aus der [Docker Dokumentation](https://docs.docker.com/build/building/multi-stage/):
 
 ```
 FROM golang:1.21
@@ -69,3 +69,5 @@ FROM scratch
 COPY --from=0 /bin/hello /bin/hello
 CMD ["/bin/hello"]
 ```
+
+2. Führe das gebaute Image im Vordergrund in einem Container aus und prüfe dessen Ausgabe

@@ -73,7 +73,6 @@ Anzeigen der Ausgabe des Containers
 kubectl logs nginx
 ```
 
-
 Ausführen eines Prozesses auf dem Container
 
 ```shell
@@ -129,3 +128,7 @@ kubectl delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes
 ```shell
 kubectl get pods
 ```
+
+## Weiterführende Aufgaben
+
+Schaue dir die [kubectl Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/) an und probiere einige der Befehle aus.

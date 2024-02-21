@@ -56,6 +56,13 @@ Wie sieht der Service aus?
 kubectl -n dns-service get service nginx -o yaml
 ```
 
+## Weiterführende Aufgaben
+
+- Nutze einen Pod im Cluster um die Kubernetes API über den `kubernetes` Service im `default` Namespace aufzurufen
+    - *Info*: Kubernetes nutzt ein self-signed Zertifikat
+    - *Tipp*: Zertifikatsfehler können bei `curl` (für diesen Test) mit dem Flag `--insecure` ignoriert werden
+- Starte einen Pod mit dem `alpine` Image, installiere das `bind-utils` Package nach und setze via `host` eine DNS-Abfrage an den cluster-internen DNS-Service `kube-dns` im `kube-system` Namespace ab.
+
 ## Cleanup
 
 Lösche den für das Lab angelegten Namespace:

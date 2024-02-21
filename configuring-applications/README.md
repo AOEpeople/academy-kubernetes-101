@@ -74,7 +74,7 @@ kubectl -n appconfig exec deployment/app -- env
 
 ## ConfigMap Mount
 
-Füge eine mehrzeilige Konfiguration der ConfigMap hinzu:
+Füge der ConfigMap eine mehrzeilige Konfiguration hinzu:
 
 ```shell
 kubectl -n appconfig edit configmap appconfig
@@ -119,7 +119,7 @@ Kommt die Konfiguration im Container an?
 kubectl -n appconfig exec deployment/app -- cat /config/app.properties
 ```
 
-## Secrets
+## Weiterführende Aufgaben
 
 Erstelle ein Secret und experimentiere etwas damit:
 
@@ -129,9 +129,9 @@ kubectl -n appconfig create secret generic appsecret --from-literal=username=myf
 
 Du brauchst Ideen?
 
-- Injiziere einen Wert via Environment Variable
-- Lass dir den Wert eines Secrets in der CLI ausgeben
-- Mounte den Wert eines Secrets als Datei
+- Injiziere in einem Pod via Environment Variable einen Wert aus dem Secret
+- Lass dir den Wert des Secret in der CLI ausgeben und dekodiere es mit `base64 -d`
+- Mounte den Wert eines Secret als Datei in einem Pod
 
 ## Cleanup
 
