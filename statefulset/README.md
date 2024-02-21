@@ -1,4 +1,4 @@
-# StatefulSets & DaemonSet
+# StatefulSets
 
 <!-- BEGIN mktoc -->
 
@@ -127,11 +127,6 @@ Um das Image zu ändern, muss das StatefulSet (<code>nginx-stateful.yml</code>) 
 <summary>Tipp 2</summary>
 Es dauert eine Weile bis alle Pods aktualisiert wurden. Alternativ kann das StatefulSet auf 0 und anschließend auf 3 Replicas skaliert werden, damit die Änderungen sofort greifen.
 </details>
-
-## Weitere Links
-
-- [StatefulSet Doku](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
-- [DaemonSet Doku](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 
 ## Cleanup
 
