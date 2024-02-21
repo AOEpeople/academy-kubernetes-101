@@ -4,7 +4,7 @@ metadata:
   name: my-pvc
 spec:
   storageClassName: ""
-  volumeName: my-pv # <-- Referenz auf das Persisitent Volume, welches in pv.yaml erstellt wurde
+  volumeName: my-pv # <-- Referenz auf das Persistent Volume, welches in pv.yaml erstellt wurde
   accessModes:
     - "ReadWriteMany"
   resources:
