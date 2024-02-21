@@ -35,6 +35,14 @@ kubectl run nginx --image=nginx --namespace=anton
 kubectl get pods -n anton
 ```
 
+## Namespace-übergreifende Operationen
+
+Das Flag `-A` (Kurzform von `--all-namespaces`) kann genutzt werden um eine Operation für alle Namespaces auszuführen
+
+```shell
+kubectl get pods -A
+```
+
 ## Namespaces löschen
 
 Namespace löschen (**inklusive aller enthaltenen Ressourcen!**)
