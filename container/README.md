@@ -2,7 +2,7 @@
 
 Baue dir deinen eigenen Container und experimentiere etwas damit.
 
-Nutze dafür den folgenden Text als Inhalt für das [`Dockerfile`](Dockerfile):
+Speichere dafür den folgenden Text in einer Datei mit dem Namen [`Dockerfile`](Dockerfile) im aktuellen Ordner:
 
 ```dockerfile
 FROM nginx:alpine
@@ -70,4 +70,5 @@ COPY --from=0 /bin/hello /bin/hello
 CMD ["/bin/hello"]
 ```
 
-2. Führe das gebaute Image im Vordergrund in einem Container aus und prüfe dessen Ausgabe
+2. Prüfe die Größe des gebauten Images
+3. Führe das gebaute Image im Vordergrund in einem Container aus und prüfe dessen Ausgabe
