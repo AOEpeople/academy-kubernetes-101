@@ -6,8 +6,6 @@ Erstelle einen Namespace und installiere den `ingress-nginx` Ingress Controller.
 
 ```shell
 kubectl create namespace deployment-strategies
-
-# Falls nicht mehr installiert:
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
 ```
 
@@ -146,5 +144,5 @@ Lösche die für das Lab angelegten Namespaces:
 
 ```shell
 kubectl delete namespace deployment-strategies
-kubectl delete namespace ingress-nginx
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
 ```

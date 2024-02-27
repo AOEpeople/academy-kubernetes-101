@@ -129,5 +129,5 @@ Lösche die für das Lab angelegten Namespaces:
 
 ```shell
 kubectl delete namespace cluster-access
-kubectl delete namespace ingress-nginx
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
 ```
