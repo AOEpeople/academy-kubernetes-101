@@ -18,9 +18,17 @@ kubectl -n appconfig edit deployment app
 ```
 
 ```yaml
-    env:
-    - name: FOO
-      value: "bar"
+spec:
+  ...
+  template:
+    ...
+    spec:
+      ...
+      containers:
+        - ...
+          env:
+            - name: FOO
+              value: "bar"
 ```
 
 Kommt sie im Container an?
