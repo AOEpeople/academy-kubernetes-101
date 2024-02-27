@@ -90,6 +90,7 @@ kubectl -n appconfig edit configmap appconfig
 
 ```yaml
 data:
+  ...
   app.properties: |
     foo=bar
     baz=qux
