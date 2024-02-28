@@ -193,6 +193,14 @@ Das Chart kann nun mit `helm install <name> <chart>` installiert werden, z.B. mi
 helm install my-app simple-chart
 ```
 
+Anschließend kann das Helm Release angeschaut werden:
+
+```sh
+helm list 
+# oder 
+kubectl get pods 
+```
+
 ## Weiterführende Aufgaben
 
 Verändere die Templates, sodass...
