@@ -11,6 +11,7 @@
   - [Änderungen testen](#Änderungen-testen)
   - [Füge ein neues Standard Label hinzu](#füge-ein-neues-standard-label-hinzu)
   - [Komplexe Daten übergeben](#komplexe-daten-übergeben)
+- [Chart installieren](#chart-installieren)
 - [Weiterführende Aufgaben](#weiterführende-aufgaben)
 <!-- END mktoc -->
 
@@ -183,6 +184,14 @@ data:
 k8s.aoe.com/cluster: {{ .Values.cluster }}
 </code></pre>
 </details>
+
+## Chart installieren
+
+Das Chart kann nun mit `helm install <name> <chart>` installiert werden, z.B. mit:
+
+```sh 
+helm install my-app simple-chart
+```
 
 ## Weiterführende Aufgaben
 

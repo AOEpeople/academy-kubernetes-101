@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "self.name" . }}-nginx
+  name: {{ include "self.name" . }}-nginx-{{ .Release.Name }}
   labels:
     {{- include "self.common-labels" . | nindent 4 }}
 spec:
@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "self.common-labels" . | nindent 8 }}
+        {{- include "self.match-selector" . | nindent 8 }}
     spec:
         containers:
           - name: nginx
