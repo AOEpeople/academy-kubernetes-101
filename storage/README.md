@@ -46,7 +46,7 @@ kubectl -n lab-storage apply -f https://raw.githubusercontent.com/AOEpeople/acad
 
 ### Datei auf geteiltem Volume erstellen
 
-Verbinde dich in den Pod `busybox`, dann erstelle eine Datei unter `/my-pvc/`.
+Verbinde dich in den Container `busybox`, dann erstelle eine Datei unter `/my-pvc/`.
 
 ```sh
 kubectl -n lab-storage exec -it nginx --container busybox -- /bin/sh
