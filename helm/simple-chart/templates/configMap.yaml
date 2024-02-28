@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "self.name" . }}-cnf"
+  labels:
+    {{- include "self.common-labels" . | nindent 4 }}
+data:
+  hello: "World"

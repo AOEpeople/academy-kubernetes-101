@@ -1,0 +1,6 @@
+apiVersion: v2
+name: simple-chart
+description: A Chart to demonstrate Helm functionality
+type: application
+version: 0.1.0
+
