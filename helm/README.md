@@ -190,6 +190,8 @@ k8s.aoe.com/cluster: {{ .Values.cluster }}
 Das Chart kann nun mit `helm install <name> <chart>` installiert werden, z.B. mit:
 
 ```sh 
+# WICHTIG: Wir müssen im Verzeichnis $HOME/academy-kubernetes-101/helm sein!
+cd $HOME/academy-kubernetes-101/helm
 helm install my-app simple-chart
 ```
 
