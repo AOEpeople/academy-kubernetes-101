@@ -63,7 +63,7 @@ Entferne `privileged: true` aus dem `securityContext` oder setze den Wert auf `f
 <details>
 <summary>Lösung</summary>
 
-Die Pods dürfen in dem Namespace nicht gestartet werden, da `allowPrivilegeEscalation: true` nicht im `securityContext` gesetzt ist und das Image mit dem `root` User läuft.
+Die Pods dürfen in dem Namespace nicht gestartet werden, da `allowPrivilegeEscalation: true` nicht im `securityContext` gesetzt ist, das Image mit dem `root` User läuft und verbotene `capabilities` gesetzt sind.
 </details>
 
 - Behebe das Problem ohne das `pod-security.kubernetes.io/enforce` Label am `pod-security` Namespace zu verändern.
