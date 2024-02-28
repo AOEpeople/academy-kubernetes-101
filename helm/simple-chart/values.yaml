@@ -1,8 +1,2 @@
 servicename: "customer-feedback"
 version: 1.2.3
-
-app_properties: |
-  server.port=8081
-  server.tls.enable=false
-  sprint.application.name=my-awesome-app
-  rewrite.in.rust="maybe? :-)"

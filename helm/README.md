@@ -105,7 +105,7 @@ k8s.aoe.com/cluster: {{ .Values.cluster }}
 
 Gerade mit ConfigMaps wollen wir manchmal komplexere Daten übergeben. YAML bietet hierfür einige Möglichkeiten: Multi-line Strings z.B.
 
-Füge ein neuen Wert `app_properties` in die `values.yaml` hinzu sodass ein Nutzer die unten stehende `app.properties` übergeben kann.
+Füge ein neuen Wert `appProperties` in die `values.yaml` hinzu sodass ein Nutzer die unten stehende `app.properties` übergeben kann.
 
 app.properties:
 ```
@@ -119,32 +119,39 @@ rewrite.in.rust="maybe? :-)"
 <summary>Tipp 1</summary>
 Der Wert kann z.B. als Multi-line Text in der <code>values.yaml</code> übergeben werden:
 <pre><code>
-app_properties: |
+appProperties: |
 server.port=8081
 server.tls.enable=false
 sprint.application.name=my-awesome-app
 rewrite.in.rust="maybe? :-)"
 </code></pre>
 
-anschließend kann in der <code>configMap.yaml</code> d
-<pre><code>
+anschließend kann in der <code>configMap.yaml</code> der Wert aus values.yaml inkludiert werden:
 
+<pre><code>
+# configMap.yaml
+data:
   app.properties: |
-{{ app_properties }}
+{{ appProperties }}
 </code></pre>
+</details>
+
+<details>
+<summary>Tipp 2</summary>
+Bei der Einrückung kommt es zu Problemen. Mit der <code>nindent</code> Funktion kann Text eingerückt werden. <code>{{ myVar | nindent 6 }}</code> rückt den Text um 6 Leerzeichen ein.
 </details>
 
 
 <details>
-<summary>Tipp 2</summary>
-Mit <code>{{ with .Values.app_properties }}</code> wird der YAML Block nur gerendet wenn <code>app_properties</code> gesetzt ist.
+<summary>Tipp 3</summary>
+Mit <code>{{ with .Values.appProperties }}</code> wird der YAML Block nur gerendet wenn <code>appProperties</code> gesetzt ist.
 <pre><code>
 # in configMap.yaml
 data:
-  {{ with .Values.app_properties }}
+  {{- with .Values.appProperties }}
   app.properties: |
     {{- . | nindent 4 }}
-  {{ end }}
+  {{- end }}
 </code></pre>
 </details>
 
@@ -154,7 +161,7 @@ data:
 values.yaml
 <pre><code>
 # ...
-app_properties: |
+appProperties: |
   server.port=8081
   server.tls.enable=false
   sprint.application.name=my-awesome-app
@@ -166,7 +173,7 @@ configMap.yaml:
 # ...
 data:
   hello: "World"
-  {{- with .Values.app_properties }}
+  {{- with .Values.appProperties }}
   app.properties: |
     {{- . | nindent 4 }}
   {{ end }}
@@ -181,5 +188,5 @@ k8s.aoe.com/cluster: {{ .Values.cluster }}
 
 Verändere die Templates, sodass...
 
-1. ... verschiedene Ports gesetzt werden können (im Moment wird nur Port 80 exposed)
-2. ... ein anderes Docker image konfigurierbar ist. Der Default Wert sollte `nginx:1.14.2` bleiben
+1. ... ein anderes Docker image konfigurierbar ist. Der Default Wert sollte `nginx:1.14.2` bleiben
+2. ... verschiedene Ports gesetzt werden können (im Moment wird nur Port 80 exposed)
