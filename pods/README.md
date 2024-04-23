@@ -39,26 +39,26 @@ kubectl -n pods run ubuntu --image ubuntu
 ## Pod restart mit fehlerhaftem container
 
 ```shell
-kubectl -n pods run restart --image ubuntu -- bash -c 'sleep 60 && echo "this is an error" && exit 1'
-watch kubectl -n pods get pods restart
-# kubectl -n pods delete pod restart
+kubectl -n pods run restarting-pod --image ubuntu -- bash -c 'sleep 60 && echo "this is an error" && exit 1'
+watch kubectl -n pods get pods restarting-pod
+# kubectl -n pods delete pod restarting-pod
 ```
 
 ## Pod am Leben erhalten
 
 ```shell
-kubectl -n pods run keepalive --image ubuntu -- sleep infinity
+kubectl -n pods run keepalive-pod --image ubuntu -- sleep infinity
 # besser jedoch mit tail -f /var/log/myapp.log
-# kubectl -n pods delete pod keepalive
+# kubectl -n pods delete pod keepalive-pod
 ```
 
 ## Exec
 
 ```shell
-kubectl -n pods run execpod --image ubuntu -- sleep infinity
-kubectl -n pods exec execpod -- ls /
-kubectl -n pods exec -ti execpod -- bash
-# kubectl -n pods delete pod execpod
+kubectl -n pods run exec-pod --image ubuntu -- sleep infinity
+kubectl -n pods exec exec-pod -- ls /
+kubectl -n pods exec -ti exec-pod -- bash
+# kubectl -n pods delete pod exec-pod
 ```
 
 ## Weiterführende Aufgaben
