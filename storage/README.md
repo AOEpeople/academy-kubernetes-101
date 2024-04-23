@@ -59,6 +59,8 @@ Anschließend verbinde dich auf den `nginx` Container. Hier sollte im selben Ver
 
 Nutze für einen neuen Persistent Volume Claim statt des `volumeName` Attributs einen Label-Selektor um ein passendes Persistent Volume zu selektieren.
 
+*Tipp*: Dazu muss auch ein neues Persistent Volume erstellt werden, das von dem Persistent Volume Claim geclaimed werden kann.
+
 ## Cleanup
 
 Lösche die für das Lab angelegten Ressourcen:
