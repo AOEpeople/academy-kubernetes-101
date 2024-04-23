@@ -19,7 +19,7 @@ kubectl -n cluster-access port-forward pod/nginx 8080:80
 Alternativ könnte man das Port Forwarding auch im gleichen Terminal starten und in den Hintergrund schieben:
 
 ```shell
-kubectl -n cluster-access port-forward pod/nginx 8080:80 &
+nohup kubectl -n cluster-access port-forward pod/nginx 8080:80 &
 ```
 
 Ansprechen des Pods von lokal über den weitergeleiteten Port:
@@ -31,8 +31,7 @@ curl localhost:8080
 Port Forwarding wieder beenden:
 
 ```shell
-ps aux | grep port-forward
-kill PROCESS_ID
+kill `ps -ef | grep -v grep | grep port-forward | awk '{ print $2 }'`
 ```
 
 ## Ingress Controller
