@@ -120,7 +120,7 @@ while true; do clear; date +"%H:%m:%S"; echo ""; kubectl -n lab-sts get pods -o 
 
 <details>
 <summary>Tipp 1</summary>
-Um das Image zu ändern, muss das StatefulSet (<code>nginx-stateful.yml</code>) angepasst werden.
+Um das Image zu ändern, muss das StatefulSet angepasst werden. Das geht mit <code>kubectl -n lab-sts edit sts web</code>
 </details>
 
 <details>
