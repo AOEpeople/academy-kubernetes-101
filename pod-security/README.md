@@ -32,7 +32,7 @@ kubectl apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-
 Die Kubernetes Events können beim Debuggen helfen:
 
 ```shell
-kubectl -n pod-security get events
+kubectl -n pod-security get events --sort-by=lastTimestamp
 ```
 </details>
 
