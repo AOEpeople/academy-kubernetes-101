@@ -45,7 +45,7 @@ kubectl get pods -A
 
 ## Namespaces löschen
 
-Namespace löschen (**inklusive aller enthaltenen Ressourcen!**)
+Namespace löschen (**inklusive aller enthaltenen Objekte!**)
 
 ```shell
 kubectl delete namespace anton
