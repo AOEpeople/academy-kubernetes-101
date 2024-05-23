@@ -4,8 +4,7 @@ Bereite einige Objekte für dieses Lab vor:
 
 ```shell
 kubectl create namespace cluster-access
-kubectl -n cluster-access run nginx --image nginx
-kubectl -n cluster-access run curl --image curlimages/curl --command "sleep" --command "infinity"
+kubectl -n cluster-access run httpd --image httpd:alpine
 ```
 
 ## port-forward
@@ -13,13 +12,13 @@ kubectl -n cluster-access run curl --image curlimages/curl --command "sleep" --c
 Starte in einem neuen Terminal das Port Forwarding:
 
 ```shell
-kubectl -n cluster-access port-forward pod/nginx 8080:80
+kubectl -n cluster-access port-forward pod/httpd 8080:80
 ```
 
 Alternativ könnte man das Port Forwarding auch im gleichen Terminal starten und in den Hintergrund schieben:
 
 ```shell
-nohup kubectl -n cluster-access port-forward pod/nginx 8080:80 &
+nohup kubectl -n cluster-access port-forward pod/httpd 8080:80 &
 ```
 
 Ansprechen des Pods von lokal über den weitergeleiteten Port:
@@ -54,19 +53,19 @@ kubectl -n ingress-nginx logs deployment/ingress-nginx-controller
 Unseren Pod über einen neuen Service exposen:
 
 ```shell
-kubectl -n cluster-access expose pod nginx --port 80 --name nginx
+kubectl -n cluster-access expose pod httpd --port 80 --name httpd
 ```
 
 Eine Ingress Objekt anlegen, das auf den Service verweist:
 
 ```shell
-kubectl -n cluster-access create ingress nginx --class=nginx --rule="www.example.com/=nginx:80"
+kubectl -n cluster-access create ingress httpd --class=nginx --rule="www.example.com/=httpd:80"
 ```
 
 Wie sieht das Objekt dazu aus?
 
 ```shell
-kubectl -n cluster-access get ingress nginx -o yaml
+kubectl -n cluster-access get ingress httpd -o yaml
 ```
 
 Bestimme und exportiere den HTTP `NodePort` des Ingress Controller Services als Umgebungsvariable im Terminal:
@@ -99,22 +98,22 @@ kubectl -n ingress-nginx logs deployment/ingress-nginx-controller
 
 ## Pfade
 
-Editiere das Ingress Objekt und ändere den Pfad zu `/hello-nginx`
+Editiere das Ingress Objekt und ändere den Pfad zu `/hello-httpd`
 
 ```shell
-kubectl -n cluster-access edit ingress nginx
+kubectl -n cluster-access edit ingress httpd
 ```
 
 Ansprechen:
 
 ```shell
-curl -H "Host: www.example.com" http://nodea:${NODE_PORT_HTTP}/hello-nginx
+curl -H "Host: www.example.com" http://nodea:${NODE_PORT_HTTP}/hello-httpd
 ```
 
 404? Wieso?
 
 ```shell
-kubectl -n cluster-access annotate ingress nginx nginx.ingress.kubernetes.io/rewrite-target='/'
+kubectl -n cluster-access annotate ingress httpd nginx.ingress.kubernetes.io/rewrite-target='/'
 ```
 
 ## Weiterführende Aufgaben
