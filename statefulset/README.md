@@ -64,7 +64,6 @@ kubectl -n lab-sts describe statefulset web
 ```
 
 ```sh
-kubectl -n lab-sts
 Name:               web
 Namespace:          lab-sts
 Selector:           app=nginx
