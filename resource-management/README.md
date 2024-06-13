@@ -31,7 +31,7 @@ kubectl -n resource-management get pods --watch
 kubectl -n resource-management get events --sort-by=lastTimestamp
 ```
 
-Prüfe den Status des `resource-management-cpu` Containers im Pod:
+Prüfe den Status des `resource-management-oom` Containers im Pod:
 
 ```shell
 kubectl -n resource-management describe pod [POD_NAME]
