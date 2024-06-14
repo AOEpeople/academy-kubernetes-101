@@ -179,10 +179,6 @@ data:
     {{- . | nindent 4 }}
   {{ end }}
 </code></pre>
-<pre><code>
-# In _helpers.tpl "self.common-labels"
-k8s.aoe.com/cluster: {{ .Values.cluster }}
-</code></pre>
 </details>
 
 ## Chart installieren
