@@ -50,7 +50,7 @@ Die Pods dürfen in dem Namespace nicht gestartet werden, da `privileged: true` 
 Entferne `privileged: true` aus dem `securityContext` oder setze den Wert auf `false`.
 </details>
 
-## Restricted
+## Weiterführende Aufgaben: Restricted
 
 - Der Namespace soll nun stärker abgesichert werden, setze dafür das Pod Security Standards Profil auf `restricted`.
 
