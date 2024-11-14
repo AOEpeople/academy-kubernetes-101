@@ -149,7 +149,7 @@ Mit <code>{{ with .Values.appProperties }}</code> wird der YAML Block nur gerend
 <pre><code>
 # in configMap.yaml
 data:
-  {{- with .Values.appProperties }}
+  {{ with .Values.appProperties }}
   app.properties: |
     {{- . | nindent 4 }}
   {{- end }}
