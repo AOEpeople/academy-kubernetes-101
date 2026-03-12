@@ -1,26 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: deployment-strategies-rolling
   name: deployment-strategies-rolling
   namespace: deployment-strategies
 spec:
-  replicas: 6
-  minReadySeconds: 30
-  selector:
-    matchLabels:
-      app: deployment-strategies-rolling
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 50%
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: deployment-strategies-rolling
   template:
     metadata:
       labels:
         app: deployment-strategies-rolling
     spec:
       containers:
-        - image: gcr.io/kuar-demo/kuard-amd64:blue
-          name: deployment-strategies-rolling
+        - name: deployment-strategies-rolling
+          image: hashicorp/http-echo:latest
+          args:
+            - "-text=version: blue"
+            - "-listen=:8080"
+          ports:
+            - containerPort: 8080

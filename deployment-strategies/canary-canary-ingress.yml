@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: deployment-strategies-canary-canary-ingress
+  name: deployment-strategies-canary-ingress
   namespace: deployment-strategies
   annotations:
     nginx.ingress.kubernetes.io/canary: "true"
@@ -9,13 +9,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "deployment-strategies-canary.local"
+    - host: deployment-strategies-canary.local
       http:
         paths:
-          - backend:
+          - path: /
+            pathType: Prefix
+            backend:
               service:
                 name: deployment-strategies-canary-green
                 port:
-                  number: 8080
-            path: /
-            pathType: Prefix
+                  number: 80

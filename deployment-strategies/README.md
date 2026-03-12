@@ -38,10 +38,11 @@ watch -n 1 kubectl -n deployment-strategies get pods
 Aktualisiere das Deployment durch den Austausch des genutzten Images und prüfe dabei die Ausgabe des vorherigen Befehls:
 
 ```shell
-kubectl -n deployment-strategies set image deployment/deployment-strategies-rolling deployment-strategies-rolling=gcr.io/kuar-demo/kuard-amd64:green
+kubectl -n deployment-strategies patch deployment deployment-strategies-rolling \
+  --patch '{"spec":{"template":{"spec":{"containers":[{"name":"deployment-strategies-rolling","args":["-text=version: green","-listen=:8080"]}]}}}}'
 ```
 
-Starte manuell ein neues Rollout, bei dem für das Deployment erst neue Pods hochgefahren und danach die alten Pods terminiert werden: 
+Starte manuell ein neues Rollout, bei dem für das Deployment erst neue Pods hochgefahren und danach die alten Pods terminiert werden:
 
 ```shell
 kubectl rollout restart -n deployment-strategies deployment deployment-strategies-rolling
@@ -50,7 +51,7 @@ kubectl rollout restart -n deployment-strategies deployment deployment-strategie
 Lösche das Deployment:
 
 ```shell
-kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/rolling.yml
+kubectl -n deployment-strategies delete deployment deployment-strategies-rolling
 ```
 
 ## Canary Deployments
@@ -81,17 +82,20 @@ Erstelle einen `ingress-nginx` Canary Ingress um ein Canary Deployment von `blue
 kubectl -n deployment-strategies apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/canary-canary-ingress.yml
 ```
 
-Prüfe, dass 50% der Anfragen an den `green`-Service gehen (siehe `version` im ersten Script-Tag):
+Prüfe, dass 50% der Anfragen an den `green`-Service gehen:
 
 ```shell
-curl -H "Host: deployment-strategies-canary.local" http://nodea:${NODE_PORT_HTTP}/
+for i in $(seq 1 10); do
+  curl -s -H "Host: deployment-strategies-canary.local" http://nodea:${NODE_PORT_HTTP}/
+done
 ```
 
 Lösche die erstellten Ressourcen:
 
 ```shell
-kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/canary.yml
-kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/canary-canary-ingress.yml
+kubectl -n deployment-strategies delete deployment deployment-strategies-canary-blue deployment-strategies-canary-green
+kubectl -n deployment-strategies delete service deployment-strategies-canary-blue deployment-strategies-canary-green
+kubectl -n deployment-strategies delete ingress deployment-strategies-canary deployment-strategies-canary-ingress
 ```
 
 ## Blue-Green Deployments
@@ -120,10 +124,14 @@ curl -H "Host: deployment-strategies-bg.local" http://nodea:${NODE_PORT_HTTP}/
 kubectl -n deployment-strategies edit ingress deployment-strategies-bg
 ```
 
+> Ändere im Editor den Service-Namen im `backend` von `deployment-strategies-bg-blue` auf `deployment-strategies-bg-green`.
+
 Lösche die erstellten Ressourcen:
 
 ```shell
-kubectl -n deployment-strategies delete -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/deployment-strategies/blue-green.yml
+kubectl -n deployment-strategies delete deployment deployment-strategies-bg-blue deployment-strategies-bg-green
+kubectl -n deployment-strategies delete service deployment-strategies-bg-blue deployment-strategies-bg-green
+kubectl -n deployment-strategies delete ingress deployment-strategies-bg
 ```
 
 ## Weiterführende Aufgaben

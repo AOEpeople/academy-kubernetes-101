@@ -1,3 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-strategies-canary-blue
+  namespace: deployment-strategies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deployment-strategies-canary
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: deployment-strategies-canary
+        version: blue
+    spec:
+      containers:
+        - name: app
+          image: hashicorp/http-echo:latest
+          args:
+            - "-text=version: blue"
+            - "-listen=:8080"
+          ports:
+            - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-strategies-canary-green
+  namespace: deployment-strategies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deployment-strategies-canary
+      version: green
+  template:
+    metadata:
+      labels:
+        app: deployment-strategies-canary
+        version: green
+    spec:
+      containers:
+        - name: app
+          image: hashicorp/http-echo:latest
+          args:
+            - "-text=version: green"
+            - "-listen=:8080"
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment-strategies-canary-blue
+  namespace: deployment-strategies
+spec:
+  selector:
+    app: deployment-strategies-canary
+    version: blue
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment-strategies-canary-green
+  namespace: deployment-strategies
+spec:
+  selector:
+    app: deployment-strategies-canary
+    version: green
+  ports:
+    - port: 80
+      targetPort: 8080
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -6,87 +84,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "deployment-strategies-canary.local"
+    - host: deployment-strategies-canary.local
       http:
         paths:
-          - backend:
+          - path: /
+            pathType: Prefix
+            backend:
               service:
                 name: deployment-strategies-canary-blue
                 port:
-                  number: 8080
-            path: /
-            pathType: Prefix
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: deployment-strategies-canary-blue
-  name: deployment-strategies-canary-blue
-  namespace: deployment-strategies
-spec:
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
-  selector:
-    app: deployment-strategies-canary-blue
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: deployment-strategies-canary-blue
-  name: deployment-strategies-canary-blue
-  namespace: deployment-strategies
-spec:
-  replicas: 6
-  minReadySeconds: 30
-  selector:
-    matchLabels:
-      app: deployment-strategies-canary-blue
-  template:
-    metadata:
-      labels:
-        app: deployment-strategies-canary-blue
-    spec:
-      containers:
-        - image: gcr.io/kuar-demo/kuard-amd64:blue
-          name: deployment-strategies-canary
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: deployment-strategies-canary-green
-  name: deployment-strategies-canary-green
-  namespace: deployment-strategies
-spec:
-  ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
-  selector:
-    app: deployment-strategies-canary-green
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: deployment-strategies-canary-green
-  name: deployment-strategies-canary-green
-  namespace: deployment-strategies
-spec:
-  replicas: 6
-  minReadySeconds: 30
-  selector:
-    matchLabels:
-      app: deployment-strategies-canary-green
-  template:
-    metadata:
-      labels:
-        app: deployment-strategies-canary-green
-    spec:
-      containers:
-        - image: gcr.io/kuar-demo/kuard-amd64:green
-          name: deployment-strategies-canary
+                  number: 80
