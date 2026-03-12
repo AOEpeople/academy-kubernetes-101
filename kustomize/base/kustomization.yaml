@@ -5,7 +5,9 @@ resources:
   - deployment.yaml
   - service.yaml
 
-commonLabels:
-  app: envdump
-  http: "true"
-  language: nodejs
+labels:
+  - includeSelectors: true
+    pairs:
+      app: envdump
+      http: "true"
+      language: nodejs

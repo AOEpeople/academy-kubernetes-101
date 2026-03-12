@@ -6,14 +6,16 @@ resources:
 
 namespace: lab-kustomize-dev
 
-commonLabels:
-  env: dev
-
 configMapGenerator:
-  - name: my-config
-    literals:
+  - literals:
       - msg=Hello world!
       - env=dev
+    name: my-config
 
 patches:
   - path: replicas.yaml
+
+labels:
+  - includeSelectors: true
+    pairs:
+      env: dev
