@@ -2,11 +2,12 @@
 
 <!-- BEGIN mktoc -->
 
-- [Vorbereitung](#vorbereitung)
-- [Lab](#lab)
-  - [Aufgabe](#aufgabe)
-  - [Deployment](#deployment)
-  - [Clean-up](#clean-up)
+- [Troubleshooting](#troubleshooting)
+  - [Vorbereitung](#vorbereitung)
+  - [Lab](#lab)
+    - [Aufgabe](#aufgabe)
+    - [Deployment](#deployment)
+    - [Clean-up](#clean-up)
 <!-- END mktoc -->
 
 ## Vorbereitung

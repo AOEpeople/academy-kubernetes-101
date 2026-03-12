@@ -92,7 +92,7 @@ web-4   1/1     Running   0          27s
 
 **Skaliere die Replicas von fünf auf zwei**
 
-**Update das Pod Image von `bitnami/nginx:1.23` zu `bitnami/nginx:1.25`**
+**Update das Pod Image von `nginx:1.23` zu `nginx:1.25`**
 
 Folgender Befehl kann genutzt werden um die Änderung zu validieren
 
@@ -103,7 +103,7 @@ kubectl -n lab-sts get pods -o jsonpath='{.items[*].spec.containers[0].image}'
 Der Output sollte folgendes zeigen (hier mit 3 Replicas):
 
 ```sh
-bitnami/nginx:1.25 bitnami/nginx:1.25 bitnami/nginx:1.25
+nginx:1.25 nginx:1.25 nginx:1.25
 ```
 
 Mit `watch` kann der Output periodisch überprüft werden.

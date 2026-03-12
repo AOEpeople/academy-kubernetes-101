@@ -2,13 +2,15 @@
 
 <!-- BEGIN mktoc -->
 
-- [Pods](#pods)
-- [ReplicaSet](#replicaset)
-  - [Tipps](#tipps)
-- [Deployments](#deployments)
-  - [Deployment erstellen](#deployment-erstellen)
-  - [Tipps](#tipps)
-- [Weitere Ressourcen](#weitere-ressourcen)
+- [Lab: Pod, ReplicaSet, Deployment](#lab-pod-replicaset-deployment)
+  - [Pods](#pods)
+  - [ReplicaSet](#replicaset)
+    - [Tipps](#tipps)
+  - [Deployments](#deployments)
+    - [Deployment erstellen](#deployment-erstellen)
+    - [Tipps](#tipps-1)
+  - [Cleanup](#cleanup)
+  - [Weitere Ressourcen](#weitere-ressourcen)
 <!-- END mktoc -->
 
 ## Pods
@@ -60,6 +62,7 @@ Nun gut, starten wir unseren ersten `nginx` Pod erneut:
 
 ```sh
 kubectl -n lab-pods apply -f https://raw.githubusercontent.com/AOEpeople/academy-kubernetes-101/main/pod-replicaset-deployment/nginx-pod.yml
+
 pod/nginx-pod created
 ```
 

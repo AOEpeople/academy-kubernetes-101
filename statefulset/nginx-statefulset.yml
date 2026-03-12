@@ -31,7 +31,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: nginx
-          image: bitnami/nginx:1.23
+          image: nginx:1.23
           ports:
             - containerPort: 80
               name: web
