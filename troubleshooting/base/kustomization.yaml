@@ -1,6 +1,8 @@
-commonLabels:
-  app: "envdump"
-  language: "nodejs"
-  http: "true"
+labels:
+  - includeSelectors: true
+    pairs:
+      app: envdump
+      http: "true"
+      language: nodejs
 
 namespace: lab-troubleshooting

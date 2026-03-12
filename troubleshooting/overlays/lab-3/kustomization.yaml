@@ -4,5 +4,7 @@ resources:
 
 namespace: lab-troubleshooting
 
-commonLabels:
-  overlay: lab-3
+labels:
+  - includeSelectors: true
+    pairs:
+      overlay: lab-3
